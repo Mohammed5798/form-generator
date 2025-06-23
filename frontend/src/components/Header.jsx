@@ -21,7 +21,7 @@ const Header = () => {
             </div>
 
             <div className="flex space-x-6">
-                <a href="#" className="hover:underline">AI Form</a>
+                <a href="/main" className="hover:underline">AI Form</a>
                 <a href="#" className="hover:underline">My Forms</a>
                 <a href="#" className="hover:underline">Customize</a>
                 <a href="#" className="hover:underline">Templates</a>
