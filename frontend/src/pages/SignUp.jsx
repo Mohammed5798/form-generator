@@ -13,16 +13,16 @@ const SignUp = () => {
   return (
     <div className="min-h-screen flex">
       {/* القسم اليسار */}
-      <div className="w-1/3 bg-[#7050EF] flex flex-col justify-center text-center space-y-5 items-center p-12 text-white">
+      <div className="w-1/2 bg-[#7050EF] flex flex-col justify-center text-center space-y-5 items-center p-12 text-white">
         <img src="/logo.png" alt="user" className=" w-48 mb-4"/>
         <h1 className="text-3xl font-bold">Hello,</h1>
-        <h2 className="text-3xl font-bold">Welcome back!</h2>
+        <h2 className="text-3xl font-bold">Welcome To Infinity</h2>
         <p className="text-lg">Please Sign Up To Create Account</p>
       </div>
 
       {/* القسم اليمين */}
       <div className="w-2/3 flex flex-col justify-center items-center p-12">
-        <h3 className="text-3xl font-bold text-[#7050EF] mb-3">Welcome To Eventify</h3>
+        <h3 className="text-3xl font-bold text-[#7050EF] mb-3">Welcome To Infinity</h3>
 
         <form onSubmit={handleSubmit} className="w-80 mt-4 space-y-4">
           <div>
