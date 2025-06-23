@@ -1,13 +1,37 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [name , setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("تم تقديم الفورم");
+    console.log("Name:", name);
+    console.log("Email:", email);
+    
+    try{
+   await axios.post("http://localhost:5000/api/users/signup", {
+  name,
+  email,
+  password
+});
+
+    setName("");
+    setEmail("");
+    setPassword("");
+    alert("تم تسجيل الحساب بنجاح");
+    }catch(error){
+     setError(error.response?.data?.message || "حدث خطأ أثناء تسجيل الحساب. حاول مرة أخرى لاحقًا.");
+    }
+
+
+
   };
   
   return (
@@ -32,6 +56,8 @@ const SignUp = () => {
               placeholder="Enter Name"
               className="w-full mt-1 p-3 rounded-2xl border border-[#7000EF] focus:outline-none"
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -42,6 +68,8 @@ const SignUp = () => {
               placeholder="Enter Email"
               className="w-full mt-1 p-3 rounded-2xl border border-[#7000EF] focus:outline-none"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -53,6 +81,8 @@ const SignUp = () => {
                 placeholder="Enter Password"
                 className="w-full p-3 rounded-2xl border border-[#7000EF] focus:outline-none"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <span
                 onClick={() => setShowPassword(!showPassword)}
