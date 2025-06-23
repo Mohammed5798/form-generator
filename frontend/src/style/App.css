@@ -9,4 +9,7 @@
         width: 100%;
         margin: auto
     }
+    .right-section .mobile-logo{
+        display: block;
+    }
 }

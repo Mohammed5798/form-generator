@@ -17,7 +17,7 @@ const Login = () => {
     <div className="min-h-screen flex">
       {/* القسم اليسار */}
       <div className="left-section w-1/2 bg-[#7050EF] flex flex-col justify-center items-center text-left space-y-5 p-10 text-white">
-        <img src="/logo.png" alt="user" className=" w-48 mb-4"/>
+        <img src="/logo.png" alt="user" className="w-48 mb-4"/>
         <h1 className="text-3xl font-bold">Hello,</h1>
         <h2 className="text-3xl font-bold">Welcome back!</h2>
         <p className="text-lg">Please Login Your Account</p>
@@ -25,7 +25,7 @@ const Login = () => {
 
       {/* القسم اليمين */}
       <div className="right-section w-2/3 flex flex-col justify-center items-center p-12">
-        <img src="/logo-white.png" alt="user" className=" w-48 mb-4"/>
+        <img src="/logo-white.png" alt="user" className="mobile-logo hidden w-48 mb-4"/>
         <h3 className="text-3xl text-[#7050EF] mb-4 font-semibold">Welcome back!</h3>
 
         <form onSubmit={handleSubmit} className="w-80 mt-4 space-y-5">
