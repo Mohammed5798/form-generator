@@ -1,3 +1,4 @@
+import '../style/App.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,13 +12,14 @@ const ForgotPage = () => {
   return (
     <div className="min-h-screen flex">
       {/* القسم اليسار */}
-      <div className="w-1/2 bg-[#7050EF] flex flex-col justify-center items-center">
+      <div className="left-section w-1/2 bg-[#7050EF] flex flex-col justify-center items-center">
         <img src="/logo.png" alt="user" className=" w-48 mb-8"/>
-        <h1 className="text-2xl font-bold text-white">You Forgot Your Password, Don't Worry .</h1>
+        <h1 className="p-4 text-2xl font-bold text-white">You Forgot Your Password, Don't Worry.</h1>
       </div>
 
       {/* القسم اليمين */}
-      <div className="w-2/3 flex flex-col justify-center items-center p-12">
+      <div className="right-section w-2/3 flex flex-col justify-center items-center p-12">
+        <img src="/logo-white.png" alt="user" className="mobile-logo hidden w-48 mb-4"/>
         <h2 className="text-3xl text-[#7050EF] font-semibold">Forgot Password?</h2>
         <p className="text-sm text-gray-500 mt-2">Enter your email to reset your password.</p>
 
@@ -44,7 +46,7 @@ const ForgotPage = () => {
 
           <button
             type="submit"
-            className="bg-[#7050EF] text-white rounded-2xl w-80 p-3 mt-4 hover:bg-[#6040DF] focus:outline-none focus:ring-2 focus:ring-[#7050EF]"
+            className="cursor-pointer bg-[#7050EF] text-white rounded-2xl w-80 p-3 mt-4 hover:bg-[#6040DF] focus:outline-none focus:ring-2 focus:ring-[#7050EF]"
           >
             Send
           </button>
@@ -58,4 +60,4 @@ const ForgotPage = () => {
   );
 };
 
-export default ForgotPage;
+export default ForgotPage; 
