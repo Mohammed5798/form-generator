@@ -1,2 +1,12 @@
 @import "tailwindcss";
-
+@media (max-width: 768px) {
+    /*Left Section In Mobile*/
+    .left-section{
+        display: none;
+    }
+    /*ٌRight Section In Mobile*/
+    .right-section{
+        width: 100%;
+        margin: auto
+    }
+}

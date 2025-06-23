@@ -1,3 +1,4 @@
+import '../style/App.css';
 import React, { useState } from 'react';
 import { FaEnvelope, FaLock, FaApple } from 'react-icons/fa';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
@@ -15,7 +16,7 @@ const Login = () => {
   return (
     <div className="min-h-screen flex">
       {/* القسم اليسار */}
-      <div className="w-1/2 bg-[#7050EF] flex flex-col justify-center items-center text-left space-y-5 p-10 text-white">
+      <div className="left-section w-1/2 bg-[#7050EF] flex flex-col justify-center items-center text-left space-y-5 p-10 text-white">
         <img src="/logo.png" alt="user" className=" w-48 mb-4"/>
         <h1 className="text-3xl font-bold">Hello,</h1>
         <h2 className="text-3xl font-bold">Welcome back!</h2>
@@ -23,7 +24,8 @@ const Login = () => {
       </div>
 
       {/* القسم اليمين */}
-      <div className="w-2/3 flex flex-col justify-center items-center p-12">
+      <div className="right-section w-2/3 flex flex-col justify-center items-center p-12">
+        <img src="/logo-white.png" alt="user" className=" w-48 mb-4"/>
         <h3 className="text-3xl text-[#7050EF] mb-4 font-semibold">Welcome back!</h3>
 
         <form onSubmit={handleSubmit} className="w-80 mt-4 space-y-5">
@@ -61,7 +63,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="bg-[#7050EF] text-white rounded-2xl w-80 p-3 mt-4 hover:bg-[#6040DF] focus:outline-none focus:ring-2 focus:ring-[#7050EF]"
+            className="cursor-pointer bg-[#7050EF] text-white rounded-2xl w-80 p-3 mt-4 hover:bg-[#6040DF] focus:outline-none focus:ring-2 focus:ring-[#7050EF]"
           >
             Login
           </button>
@@ -70,10 +72,10 @@ const Login = () => {
         <div className="mt-4 text-gray-500">Or login with</div>
 
         <div className="flex space-x-4 mt-3">
-          <button className="flex items-center justify-center rounded-full border border-gray-300 p-3 w-14 h-14 hover:border-[#7050EF]">
+          <button className="cursor-pointer flex items-center justify-center rounded-full border border-gray-300 p-3 w-14 h-14 hover:border-[#7050EF]">
             <FcGoogle size={24} />
           </button>
-          <button className="flex items-center justify-center rounded-full border border-gray-300 p-3 w-14 h-14 hover:border-[#7050EF]">
+          <button className="cursor-pointer flex items-center justify-center rounded-full border border-gray-300 p-3 w-14 h-14 hover:border-[#7050EF]">
             <FaApple size={24} />
           </button>
         </div>
