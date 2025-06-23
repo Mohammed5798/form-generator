@@ -115,7 +115,7 @@ const SignUp = () => {
 
         <div className="text-gray-600 mt-3 flex justify-center">
           Already have an account?{" "}
-          <Link to="/" className="text-[#7050EF] font-semibold ml-2">
+          <Link to="/login" className="text-[#7050EF] font-semibold ml-2">
             Log In
           </Link>
         </div>

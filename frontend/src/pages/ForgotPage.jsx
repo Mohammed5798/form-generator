@@ -12,12 +12,13 @@ const ForgotPage = () => {
     <div className="min-h-screen flex">
       {/* القسم اليسار */}
       <div className="w-1/2 bg-[#7050EF] flex flex-col justify-center items-center">
-        <img src="/security.png" alt="user" className="h-96 object-cover"/>
+        <img src="/logo.png" alt="user" className=" w-48 mb-8"/>
+        <h1 className="text-2xl font-bold text-white">You Forgot Your Password, Don't Worry .</h1>
       </div>
 
       {/* القسم اليمين */}
-      <div className="w-1/2 flex flex-col justify-center items-center p-12">
-        <h1 className="text-3xl text-[#7050EF] font-semibold">Forgot Password?</h1>
+      <div className="w-2/3 flex flex-col justify-center items-center p-12">
+        <h2 className="text-3xl text-[#7050EF] font-semibold">Forgot Password?</h2>
         <p className="text-sm text-gray-500 mt-2">Enter your email to reset your password.</p>
 
         <form onSubmit={handleSubmit} className="w-80 mt-6 space-y-5">
@@ -49,7 +50,7 @@ const ForgotPage = () => {
           </button>
         </form>
 
-        <Link to="/" className="mt-4 text-gray-500 hover:text-[#7050EF]">
+        <Link to="/login" className="mt-4 text-gray-500 hover:text-[#7050EF]">
           Back to Login
         </Link>
       </div>
