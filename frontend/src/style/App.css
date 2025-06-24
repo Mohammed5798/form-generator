@@ -18,7 +18,7 @@
     }
 }
 
-/*header Burger icon*/
+/*header */
 nav .burger span{
     display: block;
     width: 40px;
@@ -31,6 +31,7 @@ nav .burger span:not(:last-child){
 .mobile-menu {
     width: 250px;
     position: absolute;
+    top: 72px;
     left: 100%;
     background-color: #d9d9d9;
     padding: 20px;
@@ -52,5 +53,26 @@ nav .burger span:not(:last-child){
     }
     nav .profile {
         margin-left: auto;
+    }
+}
+/*Form AI Page*/
+@media (max-width: 970px) {
+    .continer {
+        flex-direction: column;
+        margin: auto;
+    }
+    .continer h2{
+        font-size: 23px
+    }
+    .left {
+        padding: 0;
+        border: none;
+        width: 100%;
+        box-shadow: none;
+    }
+    .right{
+        box-shadow: none;
+        width: 100%;
+        border: none;
     }
 }

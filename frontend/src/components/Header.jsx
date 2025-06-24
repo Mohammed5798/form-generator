@@ -1,3 +1,4 @@
+import '../style/App.css';
 import { CgTemplate } from "react-icons/cg";
 import { FaBrain } from "react-icons/fa6";
 import { MdDashboardCustomize } from "react-icons/md";
@@ -34,7 +35,7 @@ const Header = () => {
           <img src="/logo.png" alt="user" className="w-16" />
           <span className="font-bold text-lg">Infinity</span>
         </div>
-            <div className="flex space-x-6">
+            <div className="list flex space-x-6">
                 <a href="/main" className="hover:underline">AI Form</a>
                 <a href="#" className="hover:underline">My Forms</a>
                 <a href="#" className="hover:underline">Customize</a>
