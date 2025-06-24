@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import { BsMagic } from "react-icons/bs";
 import { FiEdit, FiLink, FiDownload } from "react-icons/fi";
 import { MdFormatPaint } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
   return (
@@ -19,7 +20,9 @@ const MainPage = () => {
                 </div>
                 <h2 className="text-lg font-bold mt-3">Let AI Build it for You</h2>
                 <p className="text-gray-600 text-center mt-2">Describe the form you want to create</p>
-                <button className="bg-[#7050EF] text-white rounded-lg mt-3 w-72 py-2  hover:bg-[#7000EF]">Generate</button>
+                <Link to="/formAI">
+                    <button className="bg-[#7050EF] text-white rounded-lg mt-3 w-72 py-2  hover:bg-[#7000EF]">Generate</button>
+                </Link>
             </div>
 
             {/* Build Yourself */}
@@ -29,7 +32,9 @@ const MainPage = () => {
                 </div>
                 <h2 className="text-lg font-bold mt-3">Build It Yourself</h2>
                 <p className="text-gray-600 text-center mt-2">Start generate Select fonts, color & Style</p>
-                <button className="bg-gray-50 text-gray-600 rounded-lg mt-3 w-72 py-2 hover:bg-gray-200 border border-gray-300">Start from Scratch</button>
+                <Link to="/manualForm">
+                    <button className="bg-gray-50 text-gray-600 rounded-lg mt-3 w-72 py-2 hover:bg-gray-200 border border-gray-300">Start from Scratch</button>
+                </Link>
             </div>
 
             {/*  Cards */}

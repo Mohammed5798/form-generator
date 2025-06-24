@@ -4,6 +4,8 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import ForgotPage from './pages/ForgotPage';
 import MainPage from './pages/MainPage';
+import FormAiPage from './pages/FormAiPage';
+import ManualForm from './pages/ManualForm';
 
 function App() {
   
@@ -14,6 +16,8 @@ function App() {
       <Route path="/" element={<SignUp />} />
       <Route path='/forgotPage' element={<ForgotPage/>} />
       <Route path='/main' element={<MainPage/>} />
+      <Route path='/formAI' element={<FormAiPage/>}/>
+      <Route path='/manualForm' element={<ManualForm/>} />
     </Routes>
    </div>
   )

@@ -34,14 +34,12 @@ const Header = () => {
           <img src="/logo.png" alt="user" className="w-16" />
           <span className="font-bold text-lg">Infinity</span>
         </div>
-
-        <div className="list flex space-x-6">
-          <a href="#" className="hover:underline">AI Form</a>
-          <a href="#" className="hover:underline">My Forms</a>
-          <a href="#" className="hover:underline">Customize</a>
-          <a href="#" className="hover:underline">Templates</a>
-        </div>
-
+            <div className="flex space-x-6">
+                <a href="/main" className="hover:underline">AI Form</a>
+                <a href="#" className="hover:underline">My Forms</a>
+                <a href="#" className="hover:underline">Customize</a>
+                <a href="#" className="hover:underline">Templates</a>
+            </div>
         <div
           className="profile bg-gray-200 rounded-full w-10 h-10 cursor-pointer mr-6 flex items-center justify-center"
           onClick={toggleSidebar}
