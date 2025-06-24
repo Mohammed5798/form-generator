@@ -1,30 +1,31 @@
+import '../style/App.css';
 import React from 'react'
 import Header from "../components/Header";
 
 const ManualForm = () => {
-  return (
+    return (
     <div className="min-h-screen flex flex-col">
-      <Header /> 
-        <div className="flex flex-1 justify-center items-start p-8 space-x-6">
+        <Header /> 
+        <div className="continer flex flex-1 justify-center items-start p-8 space-x-6">
             {/* Left Side */}
-            <div className="bg-white rounded-lg py-20 shadow flex flex-col items-center space-y-10 border border-gray-300 w-1/3">
+            <div className="left bg-white rounded-lg py-20 shadow flex flex-col items-center space-y-10 border border-gray-300 w-1/3">
             <h2 className="text-lg font-bold text-center">Describe your form...</h2>
-            <input
+            <textarea
                 placeholder="Registration Form for a Programming Workshop"
-                className="w-92 p-3 rounded-xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
+                className="max-w-full w-92 p-3 rounded-xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
                 required
-            />
-            <button className="bg-[#7050EF] text-white rounded-xl w-80 p-3 mb-28 hover:bg-[#7000EF]">
+            ></textarea>
+            <button className="max-w-full bg-[#7050EF] text-white rounded-xl w-80 p-3 mb-28 hover:bg-[#7000EF]">
                 Generate Form
             </button>
             </div>
             
 
             {/* Right Side*/}
-            <div className="bg-white rounded-lg p-6 shadow flex flex-col space-y-4 items-center border border-gray-300 w-1/3">
-             <h2 className="text-xl font-bold">Form Preview</h2>
+            <div className="right bg-white rounded-lg p-6 shadow flex flex-col space-y-4 items-center border border-gray-300 w-1/3">
+                <h2 className="text-xl font-bold">Form Preview</h2>
             
-                <div className="w-80 space-y-3">
+                <div className="p-4 w-80 space-y-3">
                     <div>
                         <label className="text-gray-800 text-md">Name</label>
                         <input placeholder="Enter name..."
