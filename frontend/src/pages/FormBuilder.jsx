@@ -1,8 +1,10 @@
+
 import React, { useState } from "react";
 import Header from "../components/Header";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FiToggleLeft, FiToggleRight } from "react-icons/fi";
+import {Link} from 'react-router-dom';
 
 const FormBuilderPage = () => {
   const [questions, setQuestions] = useState([
@@ -11,7 +13,7 @@ const FormBuilderPage = () => {
     { id: 3, type: "file", title: "File Upload", description: "", required: false },
   ]);
 
-  const [activeTab, setActiveTab] = useState("questions"); // 👈 "questions" أو "responses"
+  const [activeTab, setActiveTab] = useState("questions"); // "questions" أو "responses"
 
   const addField = (type) => {
     const labels = { short: "Short Answer", paragraph: "Paragraph", file: "File Upload" };
@@ -217,9 +219,11 @@ const FormBuilderPage = () => {
 
       {/* Footer buttons */}
       <div className="flex justify-between items-center p-4 px-14 border-t border-gray-300">
-        <button className="px-4 py-2 border border-gray-300 rounded flex flex-row justify-center items-center focus:outline-none focus:border-[#6040DF]">
-          <IoIosArrowBack /> Back
-        </button>
+        <Link to="/createForm">
+            <button className="px-4 py-2 border border-gray-300 rounded flex flex-row justify-center items-center focus:outline-none focus:border-[#6040DF]">
+            <IoIosArrowBack /> Back
+            </button>
+        </Link>
         <div className="space-x-2">
           <button className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#6040DF]">
             Preview
@@ -232,4 +236,3 @@ const FormBuilderPage = () => {
 };
 
 export default FormBuilderPage;
-
