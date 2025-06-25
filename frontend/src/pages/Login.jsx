@@ -31,7 +31,7 @@ const Login = () => {
     <div className="min-h-screen flex">
       {/* القسم اليسار */}
       <div className="left-section w-1/2 bg-[#7050EF] flex flex-col justify-center items-center text-left space-y-5 p-10 text-white">
-        <img src="/logo.png" alt="user" className="w-48 mb-4"/>
+        <img src="/logo1.png" alt="user" className="w-48 mb-4"/>
         <h1 className="text-3xl font-bold">Hello,</h1>
         <h2 className="text-3xl font-bold">Welcome back!</h2>
         <p className="text-lg">Please Login Your Account</p>
