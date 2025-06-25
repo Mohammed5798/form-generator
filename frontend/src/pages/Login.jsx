@@ -1,16 +1,30 @@
 import '../style/App.css';
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { FaEnvelope, FaLock, FaApple } from 'react-icons/fa';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const nav = useNavigate();
 
-  const handleSubmit = (e) => {
+  const [email , setEmail] = useState("");
+  const [password , setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("تم تقديم الفورم");
+    try{
+      await fetch("http://localhost:5000/api/users/login",{
+        email,
+        password
+      })
+      setEmail("");
+      setPassword("");
+      nav("/main");
+    }catch(error){
+      console.error("login failed", error)
+    }
   };
 
   return (
@@ -36,6 +50,8 @@ const Login = () => {
               placeholder="Email"
               className="w-full p-3 pl-10 rounded-2xl border border-[#7050EF] focus:outline-none focus:border-[#4000EF]"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -46,6 +62,8 @@ const Login = () => {
               placeholder="Password"
               className="w-full p-3 pl-10 pr-10 rounded-2xl border border-[#7050EF] focus:outline-none focus:border-[#4000EF]"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
