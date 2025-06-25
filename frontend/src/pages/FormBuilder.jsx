@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Header from "../components/Header";
 import { IoIosArrowBack } from "react-icons/io";
@@ -228,7 +227,9 @@ const FormBuilderPage = () => {
           <button className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#6040DF]">
             Preview
           </button>
+          <Link to="/qrPage">
           <button className="px-6 py-2 bg-[#7050EF] text-white rounded">Save</button>
+          </Link>
         </div>
       </div>
     </div>

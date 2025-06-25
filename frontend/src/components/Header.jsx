@@ -5,6 +5,7 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { IoDocumentsSharp } from "react-icons/io5";
 import React, { useState, useRef } from "react";
 import Sidebar from "./Sidebar";
+import { FaRegUser } from "react-icons/fa6";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -30,22 +31,21 @@ const Header = () => {
 
   return (
     <>
-      <nav className="bg-[#7050EF] flex justify-between items-center p-4 text-white">
+      <nav className="bg-white flex justify-between items-center border border-b-gray-300 p-4 text-white">
         <div className="flex items-center space-x-3 ml-6">
-          <img src="/logo.png" alt="user" className="w-16" />
-          <span className="font-bold text-lg">Infinity</span>
+          <img src="/logo1.png" alt="user" className="w-8" />
+          <span className="font-bold text-2xl text-[#7050EF]">Formigo</span>
         </div>
-            <div className="list flex space-x-6">
-                <a href="/main" className="hover:underline">AI Form</a>
-                <a href="#" className="hover:underline">My Forms</a>
-                <a href="#" className="hover:underline">Customize</a>
-                <a href="#" className="hover:underline">Templates</a>
+            <div className="list flex space-x-6 text-[#7050EF] text-lg font-semibold">
+                <a href="/main" className="hover:underline underline-offset-6">AI Form</a>
+                <a href="#" className="hover:underline underline-offset-6">My Forms</a>
+                <a href="#" className="hover:underline underline-offset-6">Customize</a>
+                <a href="#" className="hover:underline underline-offset-6">Templates</a>
             </div>
-        <div
-          className="profile bg-gray-200 rounded-full w-10 h-10 cursor-pointer mr-6 flex items-center justify-center"
+        <div className="profile bg-gray-200 rounded-full w-10 h-10 cursor-pointer mr-6 flex items-center justify-center"
           onClick={toggleSidebar}
         >
-          <span className="text-2xl text-gray-600">👤</span>
+          <FaRegUser size={25} className="text-2xl text-gray-600"/>
         </div>
         <div onClick={translate_list} className="hidden burger cursor-pointer">
           <span></span>

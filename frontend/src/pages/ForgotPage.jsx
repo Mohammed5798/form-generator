@@ -13,7 +13,7 @@ const ForgotPage = () => {
     <div className="min-h-screen flex">
       {/* القسم اليسار */}
       <div className="left-section w-1/2 bg-[#7050EF] flex flex-col justify-center items-center">
-        <img src="/logo.png" alt="user" className=" w-48 mb-8"/>
+        <img src="/logo1.png" alt="user" className=" w-48 mb-8"/>
         <h1 className="p-4 text-2xl font-bold text-white">You Forgot Your Password, Don't Worry.</h1>
       </div>
 
@@ -28,7 +28,7 @@ const ForgotPage = () => {
             <label className="text-gray-800 text-md">Email</label>
             <input
               type="email"
-              placeholder="eventify1@gmail.com"
+              placeholder="formigo@gmail.com"
               className="w-full mt-1 p-3 rounded-2xl border border-[#7000EF] focus:outline-none focus:border-[#6040DF]"
               required
             />

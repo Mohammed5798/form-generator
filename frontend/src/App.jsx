@@ -8,6 +8,7 @@ import FormAiPage from './pages/FormAiPage';
 import ManualForm from './pages/ManualForm';
 import CreateFrom from './pages/CreateFrom';
 import FormBuilder from './pages/FormBuilder';
+import QRCodePage from './pages/QRCodePage';
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
       <Route path='/createForm' element={<CreateFrom/>} />
       <Route path='/manualForm' element={<ManualForm/>} />
       <Route path='/formBuilder' element={<FormBuilder/>}/>
+      <Route path='/qrPage' element={<QRCodePage/>} />
     </Routes>
    </div>
   )
