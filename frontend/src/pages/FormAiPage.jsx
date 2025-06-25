@@ -16,7 +16,7 @@ const FormAiPage = () => {
                 className="max-w-full w-92 p-3 rounded-xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
                 required
             ></textarea>
-            <button className="generate-button max-w-full bg-[#7050EF] text-white rounded-xl w-80 p-3 mb-28 hover:bg-[#7000EF]">
+            <button className="generate-button max-w-full bg-[#7050EF] text-white rounded-xl w-80 p-3 mb-28 hover:bg-[#7000EF] cursor-pointer">
                 Generate Form
             </button>
             </div>
@@ -24,7 +24,7 @@ const FormAiPage = () => {
             {/* Right Side*/}
             <div className="p-4 w-full max-w-sm space-y-3">
             
-            <button className="text-black rounded-2xl text-xl w-full py-8 hover:bg-gray-200 border border-gray-800 flex justify-center"
+            <button className="text-black rounded-2xl text-xl w-full py-8 hover:bg-gray-200 border border-gray-800 flex justify-center cursor-pointer"
             >
                 Upload Image +
             </button>
@@ -49,7 +49,7 @@ const FormAiPage = () => {
                         </div>
 
                         <button
-                            className="bg-gray-100 text-gray-600 rounded-2xl w-full p-3 mt-2 hover:bg-gray-200 border border-gray-300"
+                            className="bg-gray-100 text-gray-600 rounded-2xl w-full p-3 mt-2 hover:bg-gray-200 border border-gray-300 cursor-pointer"
                         >
                             Add A Question +
                         </button>
