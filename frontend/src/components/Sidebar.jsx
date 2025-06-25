@@ -1,5 +1,7 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { FaRegUser } from "react-icons/fa6";
+
 
 const Sidebar = ({ isOpen, onClose }) => {
 
@@ -24,8 +26,8 @@ const Sidebar = ({ isOpen, onClose }) => {
                     <AiOutlineClose />
                 </button>
 
-                <div className="bg-gray-300 rounded-full w-20 h-20 mt-8 flex items-center justify-center">
-                    <span className="text-2xl text-gray-600">👤</span>
+                <div className="bg-gray-100 rounded-full w-15 h-15 mt-8 flex items-center justify-center">
+                    <FaRegUser size={25} />
                 </div>
 
                 <h3 className="font-bold mt-3">User Name</h3>
