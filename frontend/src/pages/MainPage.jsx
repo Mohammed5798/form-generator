@@ -32,7 +32,7 @@ const MainPage = () => {
                 </div>
                 <h2 className="text-lg font-bold mt-3">Build It Yourself</h2>
                 <p className="text-gray-600 text-center mt-2">Start generate Select fonts, color & Style</p>
-                <Link to="/manualForm">
+                <Link to="/createForm">
                     <button className="bg-gray-50 text-gray-600 rounded-lg mt-3 w-72 py-2 hover:bg-gray-200 border border-gray-300">Start from Scratch</button>
                 </Link>
             </div>

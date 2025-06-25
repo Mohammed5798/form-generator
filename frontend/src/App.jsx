@@ -6,6 +6,7 @@ import ForgotPage from './pages/ForgotPage';
 import MainPage from './pages/MainPage';
 import FormAiPage from './pages/FormAiPage';
 import ManualForm from './pages/ManualForm';
+import CreateFrom from './pages/CreateFrom';
 
 function App() {
   
@@ -17,7 +18,7 @@ function App() {
       <Route path='/forgotPage' element={<ForgotPage/>} />
       <Route path='/main' element={<MainPage/>} />
       <Route path='/formAI' element={<FormAiPage/>}/>
-      <Route path='/manualForm' element={<ManualForm/>} />
+      <Route path='/createForm' element={<CreateFrom/>} />
     </Routes>
    </div>
   )
