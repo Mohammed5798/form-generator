@@ -1,9 +1,10 @@
 import '../style/App.css';
 import React, { use, useState } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import axios from "axios";
 const SignUp = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [name , setName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,6 +28,7 @@ const SignUp = () => {
     setEmail("");
     setPassword("");
     alert("تم تسجيل الحساب بنجاح");
+   navigate("/main")
     }catch(error){
      setError(error.response?.data?.message || "حدث خطأ أثناء تسجيل الحساب. حاول مرة أخرى لاحقًا.");
     }
