@@ -74,6 +74,9 @@ nav .burger span:not(:last-child){
     .generate-button{
         margin-bottom: 10px;
     }
+    .right-side-container{
+        margin-top: 0
+    }
     .right{
         box-shadow: none;
         width: 100%;
