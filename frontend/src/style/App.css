@@ -85,3 +85,32 @@ nav .burger span:not(:last-child){
         margin-left: -15px
     }
 }
+/*Creatre Form*/
+@media (max-width: 900px) {
+    .row{
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 4);
+        width: calc(3/4 * 100%);
+        margin-bottom: 57px;
+    }
+    .row .card{
+        width: 100%
+    }
+    .cards{
+        gap: 16px;
+        margin-bottom: -197px;
+    }
+    .text{
+        margin-bottom: 60px;
+        font-size: 29px;
+    }
+    .next{
+        padding: 10px
+    }
+}
+@media (max-width: 386px) {
+    .card{
+        margin-bottom: 0;
+    }
+}
