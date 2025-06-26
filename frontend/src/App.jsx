@@ -10,6 +10,7 @@ import CreateFrom from './pages/CreateFrom';
 import FormBuilder from './pages/FormBuilder';
 import QRCodePage from './pages/QRCodePage';
 import FormResponsesPage from './pages/FormResponsesPage';
+import FormStylePage from './pages/FormStylePage';
 
 function App() {
   
@@ -25,7 +26,8 @@ function App() {
       <Route path='/manualForm' element={<ManualForm/>} />
       <Route path='/formBuilder' element={<FormBuilder/>}/>
       <Route path='/qrPage' element={<QRCodePage/>} />
-      <Route path='formResponses' element={<FormResponsesPage/>} />
+      <Route path='/formResponses' element={<FormResponsesPage/>} />
+      <Route path='/formStyle' element={<FormStylePage/>}/>
     </Routes>
    </div>
   )
