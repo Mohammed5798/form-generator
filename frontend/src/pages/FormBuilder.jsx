@@ -78,10 +78,18 @@ const FormBuilderPage = () => {
                     const file = e.target.files[0];
                     if (file) {
                       console.log("Selected image:", file.name);
-                      // يمكنك تخزينها في state أو رفعها حسب الحاجة
                     }
                   }}
                 />
+              </div>
+
+              <div className="w-96 mt-4 mb-5 flex flex-col items-start space-y-2 border border-gray-300 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-[#333]">Untitled Form</h3>
+                 <input
+                    type="text"
+                    placeholder="Form desciption"
+                    className="border border-gray-300 rounded-xl p-2 w-full focus:outline-none focus:border-[#6040DF]"
+                  />
               </div>
 
 
