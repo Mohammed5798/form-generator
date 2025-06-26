@@ -160,3 +160,13 @@ nav .burger span:not(:last-child){
         padding: 17px;
     }
 }
+/* QR Code Page */
+@media (max-width: 725px) {
+    .boxes-container {
+        flex-direction: column;
+    }
+    .box{
+        border: none;
+        width: 100%
+    }
+}
