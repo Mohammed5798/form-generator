@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <>
       <nav className="bg-white flex justify-between items-center border border-b-gray-300 p-4 text-white">
-        <div className="flex items-center space-x-3 ml-6">
+        <div className="logo flex items-center space-x-3 ml-6">
           <img src="/logo1.png" alt="user" className="w-8" />
           <span className="font-bold text-2xl text-[#7050EF]">Formigo</span>
         </div>
