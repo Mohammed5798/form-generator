@@ -4,58 +4,81 @@ import Header from "../components/Header";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FiToggleLeft, FiToggleRight } from "react-icons/fi";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { MdShortText, MdSubject, MdDateRange, MdUploadFile } from "react-icons/md";
+import { FaListUl, FaCheckSquare } from "react-icons/fa";
+import { BsUiRadios } from "react-icons/bs";
+import { HiOutlineChevronDoubleDown } from "react-icons/hi";
+import { HiOutlineDownload } from "react-icons/hi";
+
+
+
+
 
 const FormBuilderPage = () => {
   const [questions, setQuestions] = useState([
     { id: 1, type: "short", title: "Short Answer", description: "", required: true },
-    // { id: 2, type: "paragraph", title: "Paragraph", description: "", required: false },
     { id: 3, type: "file", title: "File Upload", description: "", required: false },
   ]);
-
-  const [activeTab, setActiveTab] = useState("questions"); // "questions" أو "responses"
+  const [activeTab, setActiveTab] = useState("questions");
+  const [showModal, setShowModal] = useState(false);
 
   const addField = (type) => {
-    const labels = { short: "Short Answer", paragraph: "Paragraph", file: "File Upload" };
+    const labels = {
+      short: "Short Answer",
+      paragraph: "Paragraph",
+      multiple: "Multiple Choice",
+      checkbox: "Checkboxes",
+      dropdown: "Dropdown",
+      file: "File Upload",
+      date: "Date"
+    };
     setQuestions((qs) => [
       ...qs,
       { id: Date.now(), type, title: labels[type], description: "", required: false },
     ]);
   };
+
   const updateField = (id, key, value) => {
     setQuestions((qs) =>
       qs.map((q) => (q.id === id ? { ...q, [key]: value } : q))
     );
   };
+
   const removeField = (id) => {
     setQuestions((qs) => qs.filter((q) => q.id !== id));
   };
+
+
+  const fieldTypes = [
+  { type: "short", label: "Short Answer", icon: <MdShortText className="mr-2" /> },
+  { type: "paragraph", label: "Paragraph", icon: <MdSubject className="mr-2" /> },
+  { type: "multiple", label: "Multiple Choice", icon: <BsUiRadios className="mr-2" /> },
+  { type: "checkbox", label: "Checkboxes", icon: <FaCheckSquare className="mr-2" /> },
+  { type: "dropdown", label: "Dropdown", icon: <HiOutlineChevronDoubleDown className="mr-2" /> },
+  { type: "file", label: "File Upload", icon: <HiOutlineDownload className="mr-2" /> },
+  { type: "date", label: "Date", icon: <MdDateRange className="mr-2" /> },
+];
+
+
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="builder-container flex flex-1">
-        {/* Left panel */}
         <div className={`left-panel p-10 space-y-6 ${activeTab === "questions" ? "w-1/2 border-r border-gray-300 ml-14" : "w-1/2 ml-14"}`}>
-
           <h2 className="text-2xl font-bold">Edit Your Form</h2>
-
-          {/* Tabs */}
           <div className="flex space-x-8">
             <button
               onClick={() => setActiveTab("questions")}
-              className={`pb-2 ${activeTab === "questions"
-                ? "cursor-pointer text-[#7050EF] font-bold border-b-2 border-[#7050EF]"
-                : "cursor-pointer text-gray-500"
-              }`}
+              className={`pb-2 ${activeTab === "questions" ? "cursor-pointer text-[#7050EF] font-bold border-b-2 border-[#7050EF]" : "cursor-pointer text-gray-500"}`}
             >
               Questions
             </button>
             <button
               onClick={() => setActiveTab("responses")}
-              className={`pb-2 ${activeTab === "responses"
-                ? "cursor-pointer text-[#7050EF] font-bold border-b-2 border-[#7050EF]"
-                : "cursor-pointer text-gray-500"
-              }`}
+              className={`pb-2 ${activeTab === "responses" ? "cursor-pointer text-[#7050EF] font-bold border-b-2 border-[#7050EF]" : "cursor-pointer text-gray-500"}`}
             >
               Responses
             </button>
@@ -64,10 +87,8 @@ const FormBuilderPage = () => {
           {activeTab === "questions" && (
             <>
               <div className="flex flex-col w-96 text-center">
-                <label htmlFor="form-image-upload"
-                  className="cursor-pointer flex flex-row items-center justify-center  font-semibold bg-[#ddd4ff] rounded-lg p-2 text-[#7050EF] text-lg hover:bg-[#a38cff]"
-                >
-                <img src='/image.png' className='w-7 mr-1'/> Add Image
+                <label htmlFor="form-image-upload" className="cursor-pointer flex flex-row items-center justify-center font-semibold bg-[#ddd4ff] rounded-lg p-2 text-[#7050EF] text-lg hover:bg-[#a38cff]">
+                  <img src='/image.png' className='w-7 mr-1'/> Add Image
                 </label>
                 <input
                   type="file"
@@ -85,19 +106,15 @@ const FormBuilderPage = () => {
 
               <div className="w-96 mt-4 mb-5 flex flex-col items-start space-y-2 border border-gray-300 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-[#333]">Untitled Form</h3>
-                 <input
-                    type="text"
-                    placeholder="Form desciption"
-                    className="border border-gray-300 rounded-xl p-2 w-full focus:outline-none focus:border-[#6040DF]"
-                  />
+                <input
+                  type="text"
+                  placeholder="Form description"
+                  className="border border-gray-300 rounded-xl p-2 w-full focus:outline-none focus:border-[#6040DF]"
+                />
               </div>
 
-
               {questions.map((q) => (
-                <div
-                  key={q.id}
-                  className="card p-4 rounded-lg border border-gray-300 flex flex-col space-y-3 w-96"
-                >
+                <div key={q.id} className="card p-4 rounded-lg border border-gray-300 flex flex-col space-y-3 w-96">
                   <div className="flex justify-between items-center">
                     <strong className="font-semibold text-lg">{q.title}</strong>
                     <div
@@ -109,10 +126,7 @@ const FormBuilderPage = () => {
                       {q.required ? (
                         <FiToggleRight size={24} className="text-[#7050EF] mx-1" />
                       ) : (
-                        <FiToggleLeft
-                          size={24}
-                          className="text-gray-400 hover:text-[#7050EF] mx-1"
-                        />
+                        <FiToggleLeft size={24} className="text-gray-400 hover:text-[#7050EF] mx-1" />
                       )}
                     </div>
                   </div>
@@ -122,46 +136,23 @@ const FormBuilderPage = () => {
                     <div className="flex items-center justify-between space-x-2">
                       {q.type === "file" ? (
                         <div className="flex items-center space-x-2 flex-1">
-                          <label
-                            htmlFor={`upload-field-${q.id}`}
-                            className="cursor-pointer flex items-center space-x-2 border border-gray-300 rounded-xl p-2 text-gray-600 text-sm hover:bg-gray-100 focus:outline-none focus:border-[#7050EF]"
-                          >
+                          <label htmlFor={`upload-field-${q.id}`} className="cursor-pointer flex items-center space-x-2 border border-gray-300 rounded-xl p-2 text-gray-600 text-sm hover:bg-gray-100 focus:outline-none focus:border-[#7050EF]">
                             📁 Upload File
                           </label>
                           <input
                             id={`upload-field-${q.id}`}
                             type="file"
                             className="hidden"
-                            onChange={(e) =>
-                              updateField(
-                                q.id,
-                                "fileName",
-                                e.target.files?.[0]?.name || ""
-                              )
-                            }
+                            onChange={(e) => updateField(q.id, "fileName", e.target.files?.[0]?.name || "")}
                           />
-                          {q.fileName && (
-                            <span className="text-gray-600 text-sm">{q.fileName}</span>
-                          )}
+                          {q.fileName && <span className="text-gray-600 text-sm">{q.fileName}</span>}
                         </div>
                       ) : (
-                        <select
-                          value={q.shortAnswerOption || ""}
-                          onChange={(e) =>
-                            updateField(q.id, "shortAnswerOption", e.target.value)
-                          }
+                        <input
+                          type="text"
+                          placeholder="Field input"
                           className="border border-gray-300 rounded-xl p-2 text-gray-600 text-sm flex-1 focus:outline-none focus:border-[#7050EF]"
-                        >
-                          {q.type === "short" && (
-                            <option value="">Short Answer Text</option>
-                          )}
-                          {q.type === "paragraph" && (
-                            <option value="">Detailed Answer</option>
-                          )}
-                          <option value="oneWord">One Word</option>
-                          <option value="oneSentence">One Sentence</option>
-                          <option value="custom">Custom</option>
-                        </select>
+                        />
                       )}
                       <button
                         onClick={() => removeField(q.id)}
@@ -176,11 +167,46 @@ const FormBuilderPage = () => {
               ))}
 
               <button
-                onClick={() => addField("short")}
+                onClick={() => setShowModal(true)}
                 className="card cursor-pointer text-md text-black border border-gray-300 rounded-xl p-2 w-96 hover:bg-[#5800DF] hover:text-[white] focus:outline-none focus:border-[#7050EF]"
               >
                 + Add New Field
               </button>
+
+
+              {showModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
+                  <div className="bg-white w-80 rounded-lg shadow-lg p-6">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-lg font-semibold">Add Field</h3>
+                      <button
+                        onClick={() => setShowModal(false)}
+                        className="text-gray-500 hover:text-red-500"
+                      >
+                        &times;
+                      </button>
+                    </div>
+
+                    <div className="flex flex-col space-y-3">
+                      {fieldTypes.map(({ type, label, icon }) => (
+                        <button
+                          key={type}
+                          onClick={() => {
+                            addField(type);
+                            setShowModal(false);
+                          }}
+                          className="flex items-center text-left hover:bg-gray-100 p-2 border-t border-gray-300 text-gray-700"
+                        >
+                          {icon}
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+
             </>
           )}
 
@@ -198,8 +224,9 @@ const FormBuilderPage = () => {
               </Link>
             </div>
           )}
-
         </div>
+
+
 
 
         {/* Right panel */}
@@ -231,13 +258,13 @@ const FormBuilderPage = () => {
                     />
                   )}
 
-                  {/* {q.type === "paragraph" && (
+                  {q.type === "paragraph" && (
                     <textarea
                       placeholder=""
                       rows="4"
                       className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#6040DF]"
                     />
-                  )} */}
+                  )}
 
                   {q.type === "file" && (
                     <div className="flex items-center space-x-3">
@@ -272,7 +299,6 @@ const FormBuilderPage = () => {
           </div>
         )}
 
-
       </div>
 
 
@@ -280,18 +306,18 @@ const FormBuilderPage = () => {
       {/* Footer buttons */}
       <div className="footer-buttons flex justify-between items-center p-4 px-14 border-t border-gray-300">
         <Link to="/createForm">
-            <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded flex flex-row justify-center items-center focus:outline-none focus:border-[#7050EF]">
+          <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded flex flex-row justify-center items-center focus:outline-none focus:border-[#7050EF]">
             <IoIosArrowBack /> Back
-            </button>
+          </button>
         </Link>
         <div className="space-x-2">
           <Link to="/preview">
-          <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#7050EF]">
-            Preview
-          </button>
+            <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#7050EF]">
+              Preview
+            </button>
           </Link>
           <Link to="/qrPage">
-          <button className="cursor-pointer px-6 py-2 bg-[#7050EF] text-white rounded">Save</button>
+            <button className="cursor-pointer px-6 py-2 bg-[#7050EF] text-white rounded">Save</button>
           </Link>
         </div>
       </div>
