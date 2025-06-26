@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Header from "../components/Header";
 
-const FormAndStylePage = () => {
+const FormStylePage = () => {
   const [activeTab, setActiveTab] = useState("Colors");
   const [bgColor, setBgColor] = useState("#FCFBFC");
   const [btnColor, setBtnColor] = useState("#7C3AED");
@@ -10,8 +11,9 @@ const FormAndStylePage = () => {
   const [spacing, setSpacing] = useState("8px");
 
   return (
-    <div className="min-h-screen flex flex-col p-8 px-12">
-      <div className="flex flex-1 space-x-20 mt-4">
+    <div className="min-h-screen flex flex-col">
+        <Header/>
+      <div className="flex flex-1 space-x-20 mt-4 p-8 px-12">
         {/* Left Side: Form Preview */}
         <div className="flex-1 space-y-4">
             <div className="bg-[#E3DAFF] rounded-lg p-4 flex justify-center items-center py-16">
@@ -186,4 +188,4 @@ const FormAndStylePage = () => {
   );
 };
 
-export default FormAndStylePage;
+export default FormStylePage;

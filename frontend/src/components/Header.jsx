@@ -32,9 +32,9 @@ const Header = () => {
   return (
     <>
       <nav className="bg-white flex justify-between items-center border border-b-gray-300 p-4 text-white">
-        <div className="logo flex items-center space-x-3 ml-6">
+        <div className="flex items-center space-x-3 ml-6">
           <img src="/logo1.png" alt="user" className="w-8" />
-          <span className="font-bold text-2xl text-[#7050EF]">Formigo</span>
+          <span className="text-3xl text-[#7050EF]" style={{ fontFamily: "'Pacifico', cursive" }}>Formigo</span>
         </div>
             <div className="list flex space-x-6 text-[#7050EF] text-lg font-semibold">
                 <a href="/main" className="hover:underline underline-offset-6">AI Form</a>
