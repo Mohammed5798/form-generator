@@ -11,6 +11,7 @@ import FormBuilder from './pages/FormBuilder';
 import QRCodePage from './pages/QRCodePage';
 import FormResponsesPage from './pages/FormResponsesPage';
 import FormStylePage from './pages/FormStylePage';
+import PreviewPage from './pages/PreviewPage';
 
 function App() {
   
@@ -28,6 +29,7 @@ function App() {
       <Route path='/qrPage' element={<QRCodePage/>} />
       <Route path='/formResponses' element={<FormResponsesPage/>} />
       <Route path='/formStyle' element={<FormStylePage/>}/>
+      <Route path='/preview' element={<PreviewPage/>}/>
     </Routes>
    </div>
   )

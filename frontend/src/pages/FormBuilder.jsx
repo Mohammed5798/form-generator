@@ -237,9 +237,11 @@ const FormBuilderPage = () => {
             </button>
         </Link>
         <div className="space-x-2">
+          <Link to="/preview">
           <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#7050EF]">
             Preview
           </button>
+          </Link>
           <Link to="/qrPage">
           <button className="cursor-pointer px-6 py-2 bg-[#7050EF] text-white rounded">Save</button>
           </Link>
