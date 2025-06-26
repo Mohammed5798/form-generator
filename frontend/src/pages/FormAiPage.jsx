@@ -6,9 +6,6 @@ const FormAiPage = () => {
 const [selectedImage, setSelectedImage] = useState(null);
 const [questions, setQuestions] = useState([]);
 const [showQuestionTypeModal, setShowQuestionTypeModal] = useState(false);
-const [formTitle, setFormTitle] = useState({ text: "", isBold: false, isItalic: false });  
-const [formDescription, setFormDescription] = useState({ text: "", isBold: false, isItalic: false }); 
-
 
 const handleUploadClick = () => {
     document.getElementById("upload-input").click();
@@ -34,6 +31,9 @@ const handleAddQuestion = (type) => {
     const newQuestion = {
         type: typeMap[type],
         question: "",
+        isBold: false,
+        isItalic: false,
+        isUnderline: false,
         answer:
             typeMap[type] === "multiple" || typeMap[type] === "dropdown"
             ? []
@@ -90,17 +90,10 @@ const handleAddOption = (index) => {
         setQuestions(updatedQuestions);
     };
 
-        const handleToggleBold = (index) => {
-        const updatedQuestions = [...questions];
-        updatedQuestions[index].isBold = !updatedQuestions[index].isBold;
-        setQuestions(updatedQuestions);
-    };
-
-        const handleToggleItalic = (index) => {
-        const updatedQuestions = [...questions];
-        updatedQuestions[index].isItalic = !updatedQuestions[index].isItalic;
-        setQuestions(updatedQuestions);
-    };
+const [formTitle, setFormTitle] = useState({ text: '', isBold: false, isItalic: false, isUnderline: false, size: '1rem', color: '#000000' });
+const [formDescription, setFormDescription] = useState({ text: '', isBold: false, isItalic: false, isUnderline: false, size: '1rem', color: '#000000' });
+const [showTitleTools, setShowTitleTools] = useState(false);
+const [showDescriptionTools, setShowDescriptionTools] = useState(false);
 
 
 
@@ -147,308 +140,335 @@ return (
 
                 <div className="right bg-white rounded-lg p-6 shadow flex flex-col items-center space-y-4 border border-gray-300 w-full">
                     <div className="w-80 space-y-3">
-                        <div>
+                        <div className="relative mb-5"> 
                             <label className="text-gray-800 text-md">Form Title</label>
                             <input
                                 placeholder="Enter form title..."
                                 value={formTitle.text}
-                                onChange={(e) => setFormTitle({ ...formTitle, text: e.target.value })}
-                                className={`w-full mt-1 p-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-[#6040DF] ${formTitle.isBold ? "font-bold" : ""} ${formTitle.isItalic ? "italic" : ""}`}
+                                onChange={(e) =>
+                                setFormTitle({ ...formTitle, text: e.target.value })
+                                }
+                                onFocus={() => setShowTitleTools(true)}
+                                onBlur={() => setTimeout(() => setShowTitleTools(false), 200)}
+                                style={{
+                                color: formTitle.color,
+                                fontSize: formTitle.size,
+                                }}
+                                className={`w-full mt-1 p-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-[#6040DF]
+                                    ${formTitle.isBold ? "font-bold" : ""} 
+                                    ${formTitle.isItalic ? "italic" : ""}
+                                    ${formTitle.isUnderline ? "underline" : ""}`
+                                }
                                 required
                             />
-                            <div className="flex space-x-2 mt-2">
+                            {showTitleTools && (
+                                <div className="absolute top-[100%] left-0 mt-0.5 flex space-x-1 bg-white p-1 rounded-xl border border-gray-300 shadow-lg z-10">
                                 <button
-                                title="Bold"
-                                className={`rounded p-2 ${formTitle.isBold ? "bg-gray-300" : "bg-gray-100"}`}
-                                onClick={(e) => {
+                                    title="Bold"
+                                    className={`px-2 rounded-full hover:bg-gray-200 ${formTitle.isBold ? "bg-gray-400" : ""}`}
+                                    onMouseDown={(e) => {
                                     e.preventDefault();
                                     setFormTitle({ ...formTitle, isBold: !formTitle.isBold });
-                                }}
+                                    }}
                                 >
-                                <b>B</b>
+                                    <b className="text-lg">B</b>
                                 </button>
                                 <button
-                                title="Italic"
-                                className={`rounded p-2 ${formTitle.isItalic ? "bg-gray-300" : "bg-gray-100"}`}
-                                onClick={(e) => {
+                                    title="Italic"
+                                    className={`px-2 rounded-full hover:bg-gray-200 ${formTitle.isItalic ? "bg-gray-400" : ""}`}
+                                    onMouseDown={(e) => {
                                     e.preventDefault();
                                     setFormTitle({ ...formTitle, isItalic: !formTitle.isItalic });
-                                }}
+                                    }}
                                 >
-                                <i>I</i>
+                                    <i className="text-lg">I</i>
                                 </button>
-                            </div>
+                                <button
+                                    title="Underline"
+                                    className={`px-2 rounded-full hover:bg-gray-200 ${formTitle.isUnderline ? "bg-gray-400" : ""}`}
+                                    onMouseDown={(e) => {
+                                        e.preventDefault();
+                                        setFormTitle({ ...formTitle, isUnderline: !formTitle.isUnderline });
+                                    }}
+                                    >
+                                    <span className="text-lg underline">U</span>
+                                </button>
+                                </div>
+                            )}
                         </div>
-                        <div>
+
+                        <div className="relative">
                             <label className="text-gray-800 text-md">Form Description</label>
                             <textarea
                                 placeholder="Describe Your Form..."
                                 value={formDescription.text}
-                                onChange={(e) => setFormDescription({ ...formDescription, text: e.target.value })}
+                                onChange={(e) =>
+                                setFormDescription({ ...formDescription, text: e.target.value })
+                                }
                                 rows={3}
-                                className={`w-full mt-1 p-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-[#6040DF] ${formDescription.isBold ? "font-bold" : ""} ${formDescription.isItalic ? "italic" : ""}`}
+                                onFocus={() => setShowDescriptionTools(true)}
+                                onBlur={() => setTimeout(() => setShowDescriptionTools(false), 200)}
+                                style={{
+                                color: formDescription.color,
+                                fontSize: formDescription.size,
+                                }}
+                                className={`w-full mt-1 p-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-[#6040DF] 
+                                    ${formDescription.isBold ? "font-bold" : ""}
+                                    ${formDescription.isItalic ? "italic" : ""}
+                                    ${formDescription.isUnderline ? "underline" : ""}`
+                                }
                             />
-                            <div className="flex space-x-2 mt-2">
-                                <button
-                                title="Bold"
-                                className={`rounded p-2 ${formDescription.isBold ? "bg-gray-300" : "bg-gray-100"}`}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setFormDescription({ ...formDescription, isBold: !formDescription.isBold });
-                                }}
-                                >
-                                <b>B</b>
-                                </button>
-                                <button
-                                title="Italic"
-                                className={`rounded p-2 ${formDescription.isItalic ? "bg-gray-300" : "bg-gray-100"}`}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setFormDescription({ ...formDescription, isItalic: !formDescription.isItalic });
-                                }}
-                                >
-                                <i>I</i>
-                                </button>
-                            </div>
+                            {showDescriptionTools && (
+                                <div className="absolute top-[97%] left-0 flex space-x-1 bg-white p-1 rounded-xl border border-gray-300 shadow-lg z-10">
+                                    <button
+                                        title="Bold"
+                                        className={`px-2 rounded-full hover:bg-gray-200 ${formDescription.isBold ? "bg-gray-400" : ""}`}
+                                        onMouseDown={(e) => {
+                                        e.preventDefault();
+                                        setFormDescription({ ...formDescription, isBold: !formDescription.isBold });
+                                        }}
+                                    >
+                                        <b className="text-lg">B</b>
+                                    </button>
+                                    <button
+                                        title="Italic"
+                                        className={`px-2 rounded-full hover:bg-gray-200 ${formDescription.isItalic ? "bg-gray-400" : ""}`}
+                                        onMouseDown={(e) => {
+                                        e.preventDefault();
+                                        setFormDescription({ ...formDescription, isItalic: !formDescription.isItalic });
+                                        }}
+                                    >
+                                        <i className="text-lg">I</i>
+                                    </button>
+                                    <button
+                                        title="Underline"
+                                        className={`px-2 rounded-full hover:bg-gray-200 ${formDescription.isUnderline ? "bg-gray-400" : ""}`}
+                                        onMouseDown={(e) => {
+                                            e.preventDefault();
+                                            setFormDescription({ ...formDescription, isUnderline: !formDescription.isUnderline });
+                                        }}
+                                        >
+                                        <span className="text-lg underline">U</span>
+                                    </button>
+                                </div>
+                            )}
                         </div>
+
 
                         <DragDropContext onDragEnd={handleDragEnd}>
                             <Droppable droppableId="questionsList">
                                 {(provided) => (
-                                    <div {...provided.droppableProps} ref={provided.innerRef}>
+                                <div {...provided.droppableProps} ref={provided.innerRef}>
+                                    {questions.map((q, index) => (
+                                    <Draggable key={index} draggableId={String(index)} index={index}>
+                                        {(provided) => (
+                                            <div className="space-y-3 border-t pt-3 relative" ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                             >
+                                                <div className="flex justify-between items-center">
+                                                <label className="text-gray-800 font-semibold text-md">
+                                                    Question {index + 1} ({q.type})
+                                                </label>
+                                                <div className="space-x-2">
+                                                    <button
+                                                    className="text-black rounded p-1 hover:bg-[#6040DF]"
+                                                    title={q.isEditing ? "Save" : "Edit"}
+                                                    onClick={() => handleToggleEditQuestion(index)}
+                                                    >
+                                                    {q.isEditing ? "💾" : "✏️"}
+                                                    </button>
+                                                    <button
+                                                    className="text-black rounded p-1 hover:bg-[#6040DF]"
+                                                    title="Delete Question"
+                                                    onClick={() => handleDeleteQuestion(index)}
+                                                    >
+                                                    🗑️
+                                                    </button>
+                                                </div>
+                                                </div>
 
-                                        {questions.map((q, index) => (
-                                            <Draggable key={index} draggableId={String(index)} index={index}>
-                                                {(provided) => (
-                                                    <div className="space-y-3 border-t pt-3 relative" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                        <div className="flex justify-between items-center">
-                                                            <label className="text-gray-800 font-semibold text-md">
-                                                                Question {index + 1} ({q.type})
-                                                            </label>
-                                                            <div className="space-x-2">
-                                                                <button
-                                                                className="text-black rounded p-1 hover:bg-[#6040DF]"
-                                                                title={q.isEditing ? "Save" : "Edit"}
-                                                                onClick={() => handleToggleEditQuestion(index)}
-                                                                >
-                                                                {q.isEditing ? "💾 " : "✏️ "}
-                                                                </button>
-                                                                <button
-                                                                className="text-black rounded p-1 hover:bg-[#6040DF]"
-                                                                title="Delete Question"
-                                                                onClick={() => handleDeleteQuestion(index)}
-                                                                >
-                                                                🗑️
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        {q.isEditing ? (
-                                                        <>
-                                                            <div className="flex space-x-2">
-                                                            <button
-                                                                title="Bold"
-                                                                onClick={() => handleToggleBold(index)}
-                                                                className={`rounded p-1 ${q.isBold ? "bg-gray-300" : "bg-gray-100"}`}
-                                                            >
-                                                                <b>B</b>
-                                                            </button>
-                                                            <button
-                                                                title="Italic"
-                                                                onClick={() => handleToggleItalic(index)}
-                                                                className={`rounded p-1 ${q.isItalic ? "bg-gray-300" : "bg-gray-100"}`}
-                                                            >
-                                                                <i>I</i>
-                                                            </button>
-                                                            </div>
-                                                            <input
-                                                            placeholder="Enter question..."
-                                                            value={q.question}
-                                                            onChange={(e) =>
-                                                                handleQuestionChange(index, "question", e.target.value)
-                                                            }
-                                                            className={`w-full mt-1 p-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-[#6040DF] ${q.isBold ? "font-bold" : ""} ${q.isItalic ? "italic" : ""}`}
-                                                            />
-                                                            {q.type === "multiple" && (
-                                                            <div className="space-y-2">
-                                                                {q.answer.map((opt, oIndex) => (
+                                                {q.isEditing ? (
+                                                <>
+                                                    <div className="flex space-x-1 mt-2">
+                                                    <button
+                                                        title="Bold"
+                                                        onMouseDown={(e) => {
+                                                        e.preventDefault();
+                                                        handleQuestionChange(index, "isBold", !q.isBold);
+                                                        }}
+                                                        className={`px-2 rounded-full hover:bg-gray-200 ${q.isBold ? "bg-gray-300" : ""}`}
+                                                    >
+                                                        <b className="text-lg">B</b>
+                                                    </button>
+                                                    <button
+                                                        title="Italic"
+                                                        onMouseDown={(e) => {
+                                                        e.preventDefault();
+                                                        handleQuestionChange(index, "isItalic", !q.isItalic);
+                                                        }}
+                                                        className={`px-2 rounded-full hover:bg-gray-200 ${q.isItalic ? "bg-gray-300" : ""}`}
+                                                    >
+                                                        <i className="text-lg">I</i>
+                                                    </button>
+                                                    <button
+                                                        title="Underline"
+                                                        onMouseDown={(e) => {
+                                                        e.preventDefault();
+                                                        handleQuestionChange(index, "isUnderline", !q.isUnderline);
+                                                        }}
+                                                        className={`px-2 rounded-full hover:bg-gray-200 ${q.isUnderline ? "bg-gray-300" : ""}`}
+                                                    >
+                                                        <span className="text-lg underline">U</span>
+                                                    </button>
+                                                    </div>
+
+                                                    <input
+                                                    placeholder="Enter question..." value={q.question}
+                                                    onChange={(e) => handleQuestionChange(index, "question", e.target.value) }
+                                                    className={`w-full mt-1 p-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-[#6040DF] 
+                                                        ${q.isBold ? "font-bold" : ""} 
+                                                        ${q.isItalic ? "italic" : ""} 
+                                                        ${q.isUnderline ? "underline" : ""}`}
+                                                    />
+                                                    {q.type === "multiple" && (
+                                                        <div className="space-y-2">
+                                                            {q.answer.map((opt, oIndex) => (
                                                                 <div key={oIndex} className="flex items-center space-x-2">
-                                                                    <input
-                                                                    placeholder={`Option ${oIndex + 1}`}
-                                                                    value={opt}
-                                                                    onChange={(e) =>
-                                                                        handleOptionChange(index, oIndex, e.target.value)
-                                                                    }
-                                                                    className="w-full p-2 rounded-xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
+                                                                    <input placeholder={`Option ${oIndex + 1}`} value={opt}
+                                                                        onChange={(e) => handleOptionChange(index, oIndex, e.target.value) }
+                                                                        className="w-full p-2 rounded-xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
                                                                     />
-                                                                    <button
-                                                                    className="text-red-600"
-                                                                    onClick={() => handleDeleteOption(index, oIndex)}
-                                                                    >
-                                                                    ❌
-                                                                    </button>
+                                                                    <button className="text-red-600" onClick={() => handleDeleteOption(index, oIndex)}>❌</button>
                                                                 </div>
-                                                                ))}
-                                                                <button
+                                                            ))}
+                                                            <button
                                                                 className="bg-gray-100 text-gray-600 rounded-2xl w-full p-2 hover:bg-gray-200 border border-gray-300"
                                                                 onClick={() => handleAddOption(index)}
-                                                                >
+                                                            >
                                                                 + Add Option
-                                                                </button>
-                                                            </div>
-                                                            )}
-                                                            {q.type === "short" && (
-                                                            <input
-                                                                placeholder="Short Answer..."
-                                                                disabled
-                                                                className="w-full mt-1 p-3 rounded-2xl border border-gray-300 bg-gray-100 text-gray-600"
-                                                            />
-                                                            )}
-                                                            {q.type === "file" && (
-                                                            <div className="space-y-2 relative">
-                                                                <input
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                    {q.type === "short" && (
+                                                        <input
+                                                            placeholder="Short Answer..."
+                                                            disabled
+                                                            className="w-full mt-1 p-3 rounded-2xl border border-gray-300 bg-gray-100 text-gray-600"
+                                                        />
+                                                    )}
+                                                    {q.type === "file" && (
+                                                        <div className="space-y-2 relative">
+                                                            <input 
                                                                 type="file"
-                                                                onChange={(e) => {
-                                                                    const file = e.target.files[0];
-                                                                    handleQuestionChange(index, "answer", file);
-                                                                }}
+                                                                onChange={(e) => {const file = e.target.files[0]; handleQuestionChange(index, "answer", file); }}
                                                                 className="w-full mt-1 p-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
-                                                                />
-                                                                {q.answer && (
+                                                            />
+                                                            {q.answer && (
                                                                 <div className="mt-2 relative">
                                                                     {q.answer.type.startsWith("image/") ? (
-                                                                    <img
-                                                                        src={URL.createObjectURL(q.answer)}
-                                                                        alt={q.answer.name}
-                                                                        className="w-40 h-40 object-cover rounded border border-gray-300"
-                                                                    />
-                                                                    ) : q.answer.type === "application/pdf" ? (
-                                                                    <embed
-                                                                        src={URL.createObjectURL(q.answer)}
-                                                                        type="application/pdf"
-                                                                        className="w-full h-64 rounded border border-gray-300"
-                                                                    />
-                                                                    ) : (
-                                                                    <div className="text-gray-600 text-sm flex flex-col space-y-1">
-                                                                        <span>
-                                                                        Uploaded File:{" "}
-                                                                        <span className="font-bold">{q.answer.name}</span>
-                                                                        </span>
-                                                                        <a href={URL.createObjectURL(q.answer)} download={q.answer.name} className="text-blue-600 hover:underline"
-                                                                        >
-                                                                        Download File
-                                                                        </a>
-                                                                    </div>
+                                                                        <img src={URL.createObjectURL(q.answer)} alt={q.answer.name} className="w-40 h-40 object-cover rounded border border-gray-300"/>
+                                                                        ) : q.answer.type === "application/pdf" ? (
+                                                                        <embed src={URL.createObjectURL(q.answer)} type="application/pdf" className="w-full h-64 rounded border border-gray-300"/>
+                                                                        ) : (
+                                                                        <div className="text-gray-600 text-sm flex flex-col space-y-1">
+                                                                            <span> Uploaded File:{" "} <span className="font-bold">{q.answer.name}</span></span>
+                                                                            <a href={URL.createObjectURL(q.answer)} download={q.answer.name} className="text-blue-600 hover:underline">
+                                                                                Download File
+                                                                            </a>
+                                                                        </div>
                                                                     )}
                                                                     <button
-                                                                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex justify-center items-center hover:bg-red-600"
-                                                                    title="Remove File"
-                                                                    onClick={() => handleQuestionChange(index, "answer", null) }
-                                                                    >
-                                                                    ×
+                                                                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-8 h-8 flex justify-center items-center hover:bg-red-600"
+                                                                        title="Remove File"
+                                                                        onClick={() => handleQuestionChange(index, "answer", null) }
+                                                                        >
+                                                                        ×
                                                                     </button>
                                                                 </div>
-                                                                )}
-                                                            </div>
                                                             )}
-                                                            {q.type === "dropdown" && (
-                                                            <div className="space-y-2">
-                                                                {q.answer.map((opt, oIndex) => (
+                                                        </div>
+                                                    )}
+                                                    {q.type === "dropdown" && (
+                                                        <div className="space-y-2">
+                                                            {q.answer.map((opt, oIndex) => (
                                                                 <div key={oIndex} className="flex items-center space-x-2">
                                                                     <input
-                                                                    placeholder={`Option ${oIndex + 1}`}
-                                                                    value={opt}
-                                                                    onChange={(e) =>
-                                                                        handleOptionChange(index, oIndex, e.target.value)
-                                                                    }
-                                                                    className="w-full p-2 rounded-xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
+                                                                        placeholder={`Option ${oIndex + 1}`} value={opt} 
+                                                                        onChange={(e) => handleOptionChange(index, oIndex, e.target.value)}
+                                                                        className="w-full p-2 rounded-xl border border-gray-300 focus:outline-none focus:border-[#6040DF]"
                                                                     />
-                                                                    <button
-                                                                    className="text-red-600"
-                                                                    onClick={() => handleDeleteOption(index, oIndex)}
-                                                                    >
-                                                                    ❌
-                                                                    </button>
+                                                                    <button className="text-red-600" onClick={() => handleDeleteOption(index, oIndex)}> ❌</button>
                                                                 </div>
-                                                                ))}
-                                                                <button
-                                                                className="bg-gray-100 text-gray-600 rounded-2xl w-full p-2 hover:bg-gray-200 border border-gray-300"
+                                                            ))}
+                                                            <button className="bg-gray-100 text-gray-600 rounded-2xl w-full p-2 hover:bg-gray-200 border border-gray-300"
                                                                 onClick={() => handleAddOption(index)}
-                                                                >
+                                                            >
                                                                 + Add Option
-                                                                </button>
-                                                            </div>
-                                                            )}
-                                                        </>
-                                                        ) : (
-                                                        <div className={`text-gray-700 mt-1 ${q.isBold ? "font-bold" : ""} ${q.isItalic ? "italic" : ""}`}>
-                                                            {q.question}
-                                                            {q.type === "multiple" && (
-                                                            <div className="mt-2">
-                                                                {q.answer.map((opt, oIndex) => (
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                </>
+                                                ) : (
+                                                <div className={`text-gray-700 mt-1 
+                                                    ${q.isBold ? "font-bold" : ""} 
+                                                    ${q.isItalic ? "italic" : ""} 
+                                                    ${q.isUnderline ? "underline" : ""}`}
+                                                >
+                                                    {q.question}
+                                                    {q.type === "multiple" && (
+                                                        <div className="mt-2">
+                                                            {q.answer.map((opt, oIndex) => (
                                                                 <div key={oIndex}>{`Option ${oIndex + 1}: ${opt}`}</div>
-                                                                ))}
-                                                            </div>
-                                                            )}
-                                                            {q.type === "file" && q.answer && (
-                                                            <div className="mt-2">
-                                                                {q.answer.type.startsWith("image/") ? (
-                                                                <img
-                                                                    src={URL.createObjectURL(q.answer)}
-                                                                    alt={q.answer.name}
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                    {q.type === "file" && q.answer && (
+                                                        <div className="mt-2">
+                                                            {q.answer.type.startsWith("image/") ? (
+                                                                <img src={URL.createObjectURL(q.answer)} alt={q.answer.name}
                                                                     className="w-40 h-40 object-cover rounded border border-gray-300"
                                                                 />
                                                                 ) : q.answer.type === "application/pdf" ? (
-                                                                <embed
-                                                                    src={URL.createObjectURL(q.answer)}
-                                                                    type="application/pdf"
-                                                                    className="w-full h-64 rounded border border-gray-300"
-                                                                />
+                                                                <embed src={URL.createObjectURL(q.answer)} type="application/pdf" className="w-full h-64 rounded border border-gray-300"/>
                                                                 ) : (
                                                                 <div className="text-gray-600 text-sm flex flex-col space-y-1">
-                                                                    <span>
-                                                                    Uploaded File:{" "}
-                                                                    <span className="font-bold">{q.answer.name}</span>
-                                                                    </span>
-                                                                    <a
-                                                                    href={URL.createObjectURL(q.answer)}
-                                                                    download={q.answer.name}
-                                                                    className="text-blue-600 hover:underline"
-                                                                    >
-                                                                    Download File
+                                                                    <span> Uploaded File:{" "} <span className="font-bold">{q.answer.name}</span></span>
+                                                                    <a href={URL.createObjectURL(q.answer)} download={q.answer.name} className="text-blue-600 hover:underline" > 
+                                                                        Download File
                                                                     </a>
                                                                 </div>
-                                                                )}
-                                                            </div>
                                                             )}
-                                                            {q.type === "dropdown" && (
-                                                            <div className="mt-2">
-                                                                <select className="w-full p-2 rounded-2xl border border-gray-300">
+                                                        </div>
+                                                    )}
+                                                    {q.type === "dropdown" && (
+                                                        <div className="mt-2">
+                                                            <select className="w-full p-2 rounded-2xl border border-gray-300">
                                                                 {(q.answer || []).map((opt, oIndex) => (
                                                                     <option key={oIndex}>{opt}</option>
                                                                 ))}
-                                                                </select>
-                                                            </div>
-                                                            )}
-                                                            {q.type === "short" && (
-                                                            <input
-                                                                placeholder="Short Answer..."
-                                                                disabled
-                                                                className="w-full mt-1 p-3 rounded-2xl border border-gray-300 bg-gray-100 text-gray-600"
-                                                            />
-                                                            )}
+                                                            </select>
                                                         </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                         ))
-                                        }
+                                                    )}
+                                                    {q.type === "short" && (
+                                                        <input
+                                                            placeholder="Short Answer..." disabled
+                                                            className="w-full mt-1 p-3 rounded-2xl border border-gray-300 bg-gray-100 text-gray-600"
+                                                        />
+                                                    )}
 
-                                        {provided.placeholder}
-                                    </div>
+                                                </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
                                 )}
                             </Droppable>
                         </DragDropContext>
+
 
                         <div className="flex flex-col space-y-2">
                             <button className="bg-gray-100 text-gray-600 rounded-2xl flex-1 p-3 hover:bg-gray-200 border border-gray-300"
@@ -464,8 +484,6 @@ return (
                     </div>
                 </div>
             </div>
-
-
             
         </div>
 
