@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 const FormBuilderPage = () => {
   const [questions, setQuestions] = useState([
     { id: 1, type: "short", title: "Short Answer", description: "", required: true },
-    { id: 2, type: "paragraph", title: "Paragraph", description: "", required: false },
+    // { id: 2, type: "paragraph", title: "Paragraph", description: "", required: false },
     { id: 3, type: "file", title: "File Upload", description: "", required: false },
   ]);
 
@@ -176,13 +176,23 @@ const FormBuilderPage = () => {
         {activeTab === "questions" && (
           <div className="right-panel w-2/3 p-8 space-y-8 flex flex-col items-center">
             <h2 className="text-2xl font-bold">Live Preview</h2>
-            <div className="right-panel-child right bg-white p-7 py-10 w-96 rounded-lg border border-gray-300 space-y-4">
+
+            <div className="right-panel-child right bg-white p-7 py-5 w-96 rounded-lg border border-gray-300 space-y-4">
+              
+              <img src="/Frame.png" alt="calendar" className="h-20 rounded-lg"/>
+              <div className='flex flex-col items-start justify-start'>
+                <h3 className="text-xl font-semibold">Preview a Form</h3>
+                <p className="text-ms">Please fill out the form below:</p>
+              </div>
+
+              {/* تكرار الأسئلة */}
               {questions.map((q) => (
                 <div key={q.id} className="flex flex-col space-y-1">
                   <label className="font-medium">
                     {q.title}
                     {q.required && <span className="text-red-600"> *</span>}
                   </label>
+
                   {q.type === "short" && (
                     <input
                       type="text"
@@ -190,13 +200,15 @@ const FormBuilderPage = () => {
                       className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#6040DF]"
                     />
                   )}
-                  {q.type === "paragraph" && (
+
+                  {/* {q.type === "paragraph" && (
                     <textarea
                       placeholder=""
                       rows="4"
                       className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#6040DF]"
                     />
-                  )}
+                  )} */}
+
                   {q.type === "file" && (
                     <div className="flex items-center space-x-3">
                       <input
@@ -209,21 +221,27 @@ const FormBuilderPage = () => {
                       />
                       <label
                         htmlFor={`file-input-${q.id}`}
-                        className="min-w-[125px] cursor-pointer border border-gray-300 rounded-md p-2 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:border-[#6040DF]"
+                        className="min-w-[125px] cursor-pointer border border-gray-300 rounded-lg p-1 text-center hover:bg-gray-200 focus:outline-none focus:border-[#6040DF]"
                       >
-                        📁 Choose File
+                        Choose File
                       </label>
                       <span className="file-choosed text-gray-600">{q.file || "No file chosen"}</span>
                     </div>
                   )}
+
                   {q.description && (
                     <span className="text-gray-500 text-sm">{q.description}</span>
                   )}
                 </div>
               ))}
+
+              <button type="submit" className="w-full mt-4 bg-[#6040DF] text-white py-2 rounded-lg hover:bg-[#4b30c4] transition mb-8">
+                Submit
+              </button>
             </div>
           </div>
         )}
+
 
       </div>
 
