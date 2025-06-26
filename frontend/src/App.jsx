@@ -16,7 +16,7 @@ import PreviewPage from './pages/PreviewPage';
 function App() {
   
   return (
-   <div className=''>
+   <div className='w-screen overflow-hidden'>
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<SignUp />} />

@@ -177,3 +177,15 @@ nav .burger span:not(:last-child){
         width: 100%
     }
 }
+/* Form Responses Page */
+@media (max-width: 800px) {
+    .responses-container{
+        padding: 0 30px;
+        gap: 20px;
+        flex-direction: column;
+    }
+    .res{
+        width: 100%;
+        margin: 0;
+    }
+}

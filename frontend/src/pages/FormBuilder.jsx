@@ -63,7 +63,7 @@ const FormBuilderPage = () => {
 
           {activeTab === "questions" && (
             <>
-              <div className="flex flex-col w-96 text-center">
+              <div className="card flex flex-col w-96 text-center">
                 <label htmlFor="form-image-upload"
                   className="cursor-pointer flex flex-row items-center justify-center  font-semibold bg-[#ddd4ff] rounded-lg p-2 text-[#7050EF] text-lg hover:bg-[#a38cff]"
                 >
@@ -83,9 +83,9 @@ const FormBuilderPage = () => {
                 />
               </div>
 
-              <div className="w-96 mt-4 mb-5 flex flex-col items-start space-y-2 border border-gray-300 rounded-lg p-4">
+              <div className="card w-96 mt-4 mb-5 flex flex-col items-start space-y-2 border border-gray-300 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-[#333]">Untitled Form</h3>
-                 <input
+                  <input
                     type="text"
                     placeholder="Form desciption"
                     className="border border-gray-300 rounded-xl p-2 w-full focus:outline-none focus:border-[#6040DF]"
