@@ -179,7 +179,7 @@ const FormBuilderPage = () => {
                 onClick={() => addField("short")}
                 className="card cursor-pointer text-md text-black border border-gray-300 rounded-xl p-2 w-96 hover:bg-[#5800DF] hover:text-[white] focus:outline-none focus:border-[#7050EF]"
               >
-                + Add Short Answer
+                + Add New Field
               </button>
             </>
           )}
