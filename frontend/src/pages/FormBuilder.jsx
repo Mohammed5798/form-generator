@@ -63,6 +63,28 @@ const FormBuilderPage = () => {
 
           {activeTab === "questions" && (
             <>
+              <div className="flex flex-col w-96 text-center">
+                <label htmlFor="form-image-upload"
+                  className="cursor-pointer flex flex-row items-center justify-center  font-semibold bg-[#ddd4ff] rounded-lg p-2 text-[#7050EF] text-lg hover:bg-[#a38cff]"
+                >
+                <img src='/image.png' className='w-7 mr-1'/> Add Image
+                </label>
+                <input
+                  type="file"
+                  id="form-image-upload"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      console.log("Selected image:", file.name);
+                      // يمكنك تخزينها في state أو رفعها حسب الحاجة
+                    }
+                  }}
+                />
+              </div>
+
+
               {questions.map((q) => (
                 <div
                   key={q.id}
