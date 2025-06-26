@@ -23,7 +23,7 @@ nav .burger span{
     display: block;
     width: 40px;
     height: 2px;
-    background: white;
+    background: black;
 }
 nav .burger span:not(:last-child){
     margin-bottom: 9px;
@@ -115,5 +115,48 @@ nav .burger span:not(:last-child){
 @media (max-width: 386px) {
     .card{
         margin-bottom: 0;
+    }
+}
+/* Form Builder */
+.file-choosed {
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+@media (max-width: 920px) {
+    .builder-container {
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+    }
+    .left-panel {
+        margin: 0;
+        border:none;
+        width: 100%
+    }
+    .right-panel {
+        width: 100%
+    }
+    .right-panel-child{
+        border: 1px var(--color-gray-300) solid;
+    }
+}
+@media (max-width: 600px) {
+    .builder-container{
+        width: 100%
+    }
+    .card{
+        width: 100%
+    }
+    .responses {
+        width: 102%
+    }
+}
+@media (max-width: 470px) {
+    .footer-buttons {
+        width: 100%;
+        padding: 17px;
     }
 }

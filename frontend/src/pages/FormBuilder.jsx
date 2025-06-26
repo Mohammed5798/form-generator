@@ -1,3 +1,4 @@
+import '../style/App.css';
 import React, { useState } from "react";
 import Header from "../components/Header";
 import { IoIosArrowBack } from "react-icons/io";
@@ -32,9 +33,9 @@ const FormBuilderPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex flex-1">
+      <div className="builder-container flex flex-1">
         {/* Left panel */}
-        <div className="w-1/2 p-10 border-r border-gray-300 space-y-6 ml-14">
+        <div className="left-panel w-1/2 p-10 border-r border-gray-300 space-y-6 ml-14">
           <h2 className="text-2xl font-bold">Edit Your Form</h2>
 
           {/* Tabs */}
@@ -42,8 +43,8 @@ const FormBuilderPage = () => {
             <button
               onClick={() => setActiveTab("questions")}
               className={`pb-2 ${activeTab === "questions"
-                ? "text-[#6040DF] font-bold border-b-2 border-[#6040DF]"
-                : "text-gray-500"
+                ? "cursor-pointer text-[#7050EF] font-bold border-b-2 border-[#7050EF]"
+                : "cursor-pointer text-gray-500"
               }`}
             >
               Questions
@@ -51,8 +52,8 @@ const FormBuilderPage = () => {
             <button
               onClick={() => setActiveTab("responses")}
               className={`pb-2 ${activeTab === "responses"
-                ? "text-[#6040DF] font-bold border-b-2 border-[#6040DF]"
-                : "text-gray-500"
+                ? "cursor-pointer text-[#7050EF] font-bold border-b-2 border-[#7050EF]"
+                : "cursor-pointer text-gray-500"
               }`}
             >
               Responses
@@ -64,7 +65,7 @@ const FormBuilderPage = () => {
               {questions.map((q) => (
                 <div
                   key={q.id}
-                  className="p-4 rounded-lg border border-gray-300 flex flex-col space-y-3 w-96"
+                  className="card p-4 rounded-lg border border-gray-300 flex flex-col space-y-3 w-96"
                 >
                   <div className="flex justify-between items-center">
                     <strong className="font-semibold text-lg">{q.title}</strong>
@@ -75,11 +76,11 @@ const FormBuilderPage = () => {
                     >
                       <span className="text-sm">Required</span>
                       {q.required ? (
-                        <FiToggleRight size={24} className="text-[#6040DF] mx-1" />
+                        <FiToggleRight size={24} className="text-[#7050EF] mx-1" />
                       ) : (
                         <FiToggleLeft
                           size={24}
-                          className="text-gray-400 hover:text-[#6040DF] mx-1"
+                          className="text-gray-400 hover:text-[#7050EF] mx-1"
                         />
                       )}
                     </div>
@@ -92,7 +93,7 @@ const FormBuilderPage = () => {
                         <div className="flex items-center space-x-2 flex-1">
                           <label
                             htmlFor={`upload-field-${q.id}`}
-                            className="cursor-pointer flex items-center space-x-2 border border-gray-300 rounded-xl p-2 text-gray-600 text-sm hover:bg-gray-100 focus:outline-none focus:border-[#6040DF]"
+                            className="cursor-pointer flex items-center space-x-2 border border-gray-300 rounded-xl p-2 text-gray-600 text-sm hover:bg-gray-100 focus:outline-none focus:border-[#7050EF]"
                           >
                             📁 Upload File
                           </label>
@@ -118,7 +119,7 @@ const FormBuilderPage = () => {
                           onChange={(e) =>
                             updateField(q.id, "shortAnswerOption", e.target.value)
                           }
-                          className="border border-gray-300 rounded-xl p-2 text-gray-600 text-sm flex-1 focus:outline-none focus:border-[#6040DF]"
+                          className="border border-gray-300 rounded-xl p-2 text-gray-600 text-sm flex-1 focus:outline-none focus:border-[#7050EF]"
                         >
                           {q.type === "short" && (
                             <option value="">Short Answer Text</option>
@@ -145,7 +146,7 @@ const FormBuilderPage = () => {
 
               <button
                 onClick={() => addField("short")}
-                className="text-md text-black border border-gray-300 rounded-xl p-2 w-96 hover:bg-[#5800DF] focus:outline-none focus:border-[#6040DF]"
+                className="card cursor-pointer text-md text-black border border-gray-300 rounded-xl p-2 w-96 hover:bg-[#5800DF] hover:text-[white] focus:outline-none focus:border-[#7050EF]"
               >
                 + Add Short Answer
               </button>
@@ -153,7 +154,7 @@ const FormBuilderPage = () => {
           )}
 
           {activeTab === "responses" && (
-            <div className="p-4 rounded-lg border border-gray-300 w-96">
+            <div className="responses p-4 rounded-lg border border-gray-300 w-96">
               <h3 className="font-semibold text-lg">Responses</h3>
               <p className="text-gray-600 text-sm">
                 Here you can display your responses or any custom layout you want!
@@ -163,9 +164,9 @@ const FormBuilderPage = () => {
         </div>
 
         {/* Right panel */}
-        <div className="w-2/3 p-8 space-y-8 flex flex-col items-center">
+        <div className="right-panel w-2/3 p-8 space-y-8 flex flex-col items-center">
           <h2 className="text-2xl font-bold">Live Preview</h2>
-          <div className="bg-white p-7 py-10 w-96 rounded-lg border border-gray-300 space-y-4">
+          <div className="right-panel-child right bg-white p-7 py-10 w-96 rounded-lg border border-gray-300 space-y-4">
             {questions.map((q) => (
               <div key={q.id} className="flex flex-col space-y-1">
                 <label className="font-medium">
@@ -176,14 +177,14 @@ const FormBuilderPage = () => {
                   <input
                     type="text"
                     placeholder=""
-                    className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#6040DF]"
+                    className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#7050EF]"
                   />
                 )}
                 {q.type === "paragraph" && (
                   <textarea
                     placeholder=""
                     rows="4"
-                    className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#6040DF]"
+                    className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#7050EF]"
                   />
                 )}
                 {q.type === "file" && (
@@ -198,17 +199,17 @@ const FormBuilderPage = () => {
                     />
                     <label
                       htmlFor={`file-input-${q.id}`}
-                      className="cursor-pointer border border-gray-300 rounded-md p-2 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:border-[#6040DF]"
+                      className="min-w-[125px] cursor-pointer border border-gray-300 rounded-md p-2 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:border-[#7050EF]"
                     >
                       📁 Choose File
                     </label>
-                    <span className="text-gray-600">
+                    <span className="file-choosed text-gray-600">
                       {q.file || "No file chosen"}
                     </span>
                   </div>
                 )}
                 {q.description && (
-                  <span className="text-gray-500 text-sm">{q.description}</span>
+                  <span className="w-break text-gray-500 text-sm">{q.description}</span>
                 )}
               </div>
             ))}
@@ -217,18 +218,18 @@ const FormBuilderPage = () => {
       </div>
 
       {/* Footer buttons */}
-      <div className="flex justify-between items-center p-4 px-14 border-t border-gray-300">
+      <div className="footer-buttons flex justify-between items-center p-4 px-14 border-t border-gray-300">
         <Link to="/createForm">
-            <button className="px-4 py-2 border border-gray-300 rounded flex flex-row justify-center items-center focus:outline-none focus:border-[#6040DF]">
+            <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded flex flex-row justify-center items-center focus:outline-none focus:border-[#7050EF]">
             <IoIosArrowBack /> Back
             </button>
         </Link>
         <div className="space-x-2">
-          <button className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#6040DF]">
+          <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#7050EF]">
             Preview
           </button>
           <Link to="/qrPage">
-          <button className="px-6 py-2 bg-[#7050EF] text-white rounded">Save</button>
+          <button className="cursor-pointer px-6 py-2 bg-[#7050EF] text-white rounded">Save</button>
           </Link>
         </div>
       </div>
