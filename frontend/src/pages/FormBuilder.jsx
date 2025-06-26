@@ -35,7 +35,7 @@ const FormBuilderPage = () => {
       <Header />
       <div className="builder-container flex flex-1">
         {/* Left panel */}
-        <div className={`p-10 space-y-6 ${activeTab === "questions" ? "w-1/2 border-r border-gray-300 ml-14" : "w-1/2 ml-14"}`}>
+        <div className={`left-panel p-10 space-y-6 ${activeTab === "questions" ? "w-1/2 border-r border-gray-300 ml-14" : "w-1/2 ml-14"}`}>
 
           <h2 className="text-2xl font-bold">Edit Your Form</h2>
 
@@ -154,9 +154,8 @@ const FormBuilderPage = () => {
             </>
           )}
 
-        
           {activeTab === "responses" && (
-            <div className="flex flex-col space-y-3 items-center justify-center w-6xl">
+            <div className="responses flex flex-col space-y-3 items-center justify-center w-6xl p-4 rounded-lg border border-gray-300">
               <img src="/logo1.png" alt="user" className="" />
               <h3 className="text-lg font-bold mt-4">No form published yet</h3>
               <p className="text-gray-600 text-sm text-center mt-2">
@@ -175,9 +174,9 @@ const FormBuilderPage = () => {
 
         {/* Right panel */}
         {activeTab === "questions" && (
-          <div className="w-2/3 p-8 space-y-8 flex flex-col items-center">
+          <div className="right-panel w-2/3 p-8 space-y-8 flex flex-col items-center">
             <h2 className="text-2xl font-bold">Live Preview</h2>
-            <div className="bg-white p-7 py-10 w-96 rounded-lg border border-gray-300 space-y-4">
+            <div className="right-panel-child right bg-white p-7 py-10 w-96 rounded-lg border border-gray-300 space-y-4">
               {questions.map((q) => (
                 <div key={q.id} className="flex flex-col space-y-1">
                   <label className="font-medium">
@@ -210,11 +209,11 @@ const FormBuilderPage = () => {
                       />
                       <label
                         htmlFor={`file-input-${q.id}`}
-                        className="cursor-pointer border border-gray-300 rounded-md p-2 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:border-[#6040DF]"
+                        className="min-w-[125px] cursor-pointer border border-gray-300 rounded-md p-2 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:border-[#6040DF]"
                       >
                         📁 Choose File
                       </label>
-                      <span className="text-gray-600">{q.file || "No file chosen"}</span>
+                      <span className="file-choosed text-gray-600">{q.file || "No file chosen"}</span>
                     </div>
                   )}
                   {q.description && (
