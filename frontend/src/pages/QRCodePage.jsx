@@ -63,7 +63,7 @@ const QRCodePage = () => {
                     </button>
                 </Link>
 
-                <Link to="/">
+                <Link to="/formResponses">
                     <button className="px-7 py-2 bg-[#7050EF] text-white rounded-lg">View Responses</button>
                 </Link>
                 
