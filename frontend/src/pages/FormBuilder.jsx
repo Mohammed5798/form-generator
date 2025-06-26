@@ -35,7 +35,8 @@ const FormBuilderPage = () => {
       <Header />
       <div className="builder-container flex flex-1">
         {/* Left panel */}
-        <div className="left-panel w-1/2 p-10 border-r border-gray-300 space-y-6 ml-14">
+        <div className={`p-10 space-y-6 ${activeTab === "questions" ? "w-1/2 border-r border-gray-300 ml-14" : "w-1/2 ml-14"}`}>
+
           <h2 className="text-2xl font-bold">Edit Your Form</h2>
 
           {/* Tabs */}
@@ -153,69 +154,81 @@ const FormBuilderPage = () => {
             </>
           )}
 
+        
           {activeTab === "responses" && (
-            <div className="responses p-4 rounded-lg border border-gray-300 w-96">
-              <h3 className="font-semibold text-lg">Responses</h3>
-              <p className="text-gray-600 text-sm">
-                Here you can display your responses or any custom layout you want!
+            <div className="flex flex-col space-y-3 items-center justify-center w-6xl">
+              <img src="/logo1.png" alt="user" className="" />
+              <h3 className="text-lg font-bold mt-4">No form published yet</h3>
+              <p className="text-gray-600 text-sm text-center mt-2">
+                You haven’t published your form yet. Once it’s published and responses start coming in, they will appear here.
               </p>
+              <Link to="/createForm">
+                <button className="mt-4 bg-[#6040DF] text-white rounded-lg py-2 px-7 hover:bg-[#5020CF]">
+                  Continue Editing
+                </button>
+              </Link>
             </div>
           )}
+
         </div>
 
+
         {/* Right panel */}
-        <div className="right-panel w-2/3 p-8 space-y-8 flex flex-col items-center">
-          <h2 className="text-2xl font-bold">Live Preview</h2>
-          <div className="right-panel-child right bg-white p-7 py-10 w-96 rounded-lg border border-gray-300 space-y-4">
-            {questions.map((q) => (
-              <div key={q.id} className="flex flex-col space-y-1">
-                <label className="font-medium">
-                  {q.title}
-                  {q.required && <span className="text-red-600"> *</span>}
-                </label>
-                {q.type === "short" && (
-                  <input
-                    type="text"
-                    placeholder=""
-                    className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#7050EF]"
-                  />
-                )}
-                {q.type === "paragraph" && (
-                  <textarea
-                    placeholder=""
-                    rows="4"
-                    className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#7050EF]"
-                  />
-                )}
-                {q.type === "file" && (
-                  <div className="flex items-center space-x-3">
+        {activeTab === "questions" && (
+          <div className="w-2/3 p-8 space-y-8 flex flex-col items-center">
+            <h2 className="text-2xl font-bold">Live Preview</h2>
+            <div className="bg-white p-7 py-10 w-96 rounded-lg border border-gray-300 space-y-4">
+              {questions.map((q) => (
+                <div key={q.id} className="flex flex-col space-y-1">
+                  <label className="font-medium">
+                    {q.title}
+                    {q.required && <span className="text-red-600"> *</span>}
+                  </label>
+                  {q.type === "short" && (
                     <input
-                      id={`file-input-${q.id}`}
-                      type="file"
-                      className="hidden"
-                      onChange={(e) =>
-                        updateField(q.id, "file", e.target.files?.[0]?.name || "")
-                      }
+                      type="text"
+                      placeholder=""
+                      className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#6040DF]"
                     />
-                    <label
-                      htmlFor={`file-input-${q.id}`}
-                      className="min-w-[125px] cursor-pointer border border-gray-300 rounded-md p-2 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:border-[#7050EF]"
-                    >
-                      📁 Choose File
-                    </label>
-                    <span className="file-choosed text-gray-600">
-                      {q.file || "No file chosen"}
-                    </span>
-                  </div>
-                )}
-                {q.description && (
-                  <span className="w-break text-gray-500 text-sm">{q.description}</span>
-                )}
-              </div>
-            ))}
+                  )}
+                  {q.type === "paragraph" && (
+                    <textarea
+                      placeholder=""
+                      rows="4"
+                      className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:border-[#6040DF]"
+                    />
+                  )}
+                  {q.type === "file" && (
+                    <div className="flex items-center space-x-3">
+                      <input
+                        id={`file-input-${q.id}`}
+                        type="file"
+                        className="hidden"
+                        onChange={(e) =>
+                          updateField(q.id, "file", e.target.files?.[0]?.name || "")
+                        }
+                      />
+                      <label
+                        htmlFor={`file-input-${q.id}`}
+                        className="cursor-pointer border border-gray-300 rounded-md p-2 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:border-[#6040DF]"
+                      >
+                        📁 Choose File
+                      </label>
+                      <span className="text-gray-600">{q.file || "No file chosen"}</span>
+                    </div>
+                  )}
+                  {q.description && (
+                    <span className="text-gray-500 text-sm">{q.description}</span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
+
+
 
       {/* Footer buttons */}
       <div className="footer-buttons flex justify-between items-center p-4 px-14 border-t border-gray-300">
