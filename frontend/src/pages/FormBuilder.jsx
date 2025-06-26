@@ -155,10 +155,10 @@ const FormBuilderPage = () => {
           )}
 
           {activeTab === "responses" && (
-            <div className="responses flex flex-col space-y-3 items-center justify-center w-6xl p-4 rounded-lg border border-gray-300">
+            <div className="responses flex flex-col space-y-3 items-center justify-center w-6xl p-4">
               <img src="/logo1.png" alt="user" className="" />
               <h3 className="text-lg font-bold mt-4">No form published yet</h3>
-              <p className="text-gray-600 text-sm text-center mt-2">
+              <p className="text-gray-600 text-md text-center mt-2">
                 You haven’t published your form yet. Once it’s published and responses start coming in, they will appear here.
               </p>
               <Link to="/createForm">
