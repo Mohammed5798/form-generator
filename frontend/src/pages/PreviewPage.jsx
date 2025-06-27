@@ -21,7 +21,7 @@ const PreviewPage = () => {
       <div className='flex flex-col items-center py-5 px-4'>
 
         {/* Card */}
-      <div className="w-full max-w-2xl bg-white p-6 ">
+      <div className="max-[700px]:p-0 w-full max-w-2xl bg-white p-6 ">
         <div className="bg-purple-100 rounded-lg flex items-center justify-center mb-6">
           <img src="/Frame.png" alt="Calendar" className="w-full"/>
         </div>
@@ -73,7 +73,7 @@ const PreviewPage = () => {
                 <IoIosArrowBack /> Back
                 </button>
             </Link>
-            <div className="space-x-6">
+            <div className="space-x-6 max-[468px]:space-x-2">
             <Link to="/formStyle">
             <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#7050EF]">
                 Customize Style
@@ -83,7 +83,7 @@ const PreviewPage = () => {
             <button className="cursor-pointer px-6 py-2 bg-[#7050EF] text-white rounded">Save</button>
             </Link>
             </div>
-         </div>
+        </div>
 
     </div>
   )
