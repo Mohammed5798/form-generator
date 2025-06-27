@@ -1,65 +1,81 @@
 import '../style/App.css';
 import { CgTemplate } from "react-icons/cg";
-import { FaBrain } from "react-icons/fa6";
+import { FaBrain, FaRegUser } from "react-icons/fa6";
 import { MdDashboardCustomize } from "react-icons/md";
 import { IoDocumentsSharp } from "react-icons/io5";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import { FaRegUser } from "react-icons/fa6";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-
-  function translate_list() {
-    if (menuRef.current.classList.contains('open')) {
-      menuRef.current.style.transform = "translateX(100%)";
-      menuRef.current.classList.remove("open")
-    }else{
-      menuRef.current.style.transform = "translateX(-100%)";
-      menuRef.current.classList.add("open")
-    }
-  }
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  const closeSidebar = () => setIsSidebarOpen(false);
+  const toggleMobileMenu = () => setIsMenuOpen((prev) => !prev);
 
   return (
     <>
-      <nav className="bg-white flex justify-between items-center border border-b-gray-300 p-4 text-white">
-        <div className="flex items-center space-x-3 ml-6">
-          <img src="/logo1.png" alt="user" className="w-8" />
-          <span className="text-3xl text-[#7050EF]" style={{ fontFamily: "'Pacifico', cursive" }}>Formigo</span>
+      <nav className="bg-white flex justify-between items-center border-b border-gray-300 p-4 relative z-50">
+        {/* Logo */}
+        <div className="flex items-center space-x-3 ml-2 sm:ml-6">
+          <img src="/logo1.png" alt="logo" className="w-8" />
+          <span className="text-2xl sm:text-3xl text-[#7050EF]" style={{ fontFamily: "'Pacifico', cursive" }} >
+            Formigo
+          </span>
         </div>
-            <div className="list flex space-x-6 text-[#7050EF] text-lg font-semibold">
-                <a href="/main" className="hover:underline underline-offset-6">AI Form</a>
-                <a href="#" className="hover:underline underline-offset-6">My Forms</a>
-                <a href="#" className="hover:underline underline-offset-6">Customize</a>
-                <a href="#" className="hover:underline underline-offset-6">Templates</a>
-            </div>
-        <div className="profile bg-gray-200 rounded-full w-10 h-10 cursor-pointer mr-6 flex items-center justify-center"
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-6 text-[#7050EF] text-md sm:text-lg font-semibold">
+          <a href="/main" className="hover:underline underline-offset-6">AI Form</a>
+          <a href="#" className="hover:underline underline-offset-6">My Forms</a>
+          <a href="#" className="hover:underline underline-offset-6">Customize</a>
+          <a href="#" className="hover:underline underline-offset-6">Templates</a>
+        </div>
+
+        <div className="hidden md:flex bg-gray-200 rounded-full w-10 h-10 cursor-pointer mr-6 items-center justify-center"
           onClick={toggleSidebar}
         >
-          <FaRegUser size={25} className="text-2xl text-gray-600"/>
+          <FaRegUser size={20} className="text-gray-600" />
         </div>
-        <div onClick={translate_list} className="hidden burger cursor-pointer">
-          <span></span>
-          <span></span>
-          <span></span>
+
+        {/* Mobile: Profile + Menu Icon */}
+        <div className="flex items-center space-x-3 md:hidden mr-2">
+          <div className="bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center" onClick={toggleSidebar}>
+            <FaRegUser size={20} className="text-gray-600" />
+          </div>
+
+          {/* Hamburger Menu */}
+          <div onClick={toggleMobileMenu} className="flex flex-col cursor-pointer space-y-1">
+            <span className="w-6 h-0.5 bg-[#7050EF]"></span>
+            <span className="w-6 h-0.5 bg-[#7050EF]"></span>
+            <span className="w-6 h-0.5 bg-[#7050EF]"></span>
+          </div>
         </div>
       </nav>
-      <div ref={menuRef} className="mobile-menu transition-all duration-300 ease-in-out rounded-bl-[10px]">
-        <a href="#" className="hover:bg-[#c4c4c4] block"><FaBrain className="inline mr-[10px]" />AI Form</a>
-        <a href="#" className="hover:bg-[#c4c4c4] block"><IoDocumentsSharp className="inline mr-[10px]" />My Forms</a>
-        <a href="#" className="hover:bg-[#c4c4c4] block"><MdDashboardCustomize className="inline mr-[10px]" />Customize</a>
-        <a href="#" className="hover:bg-[#c4c4c4] block"><CgTemplate className="inline mr-[10px]" />Templates</a>
+
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-[64px] right-0 w-40 bg-gray-50 shadow-md rounded-lg z-40 transition-transform duration-300 md:hidden ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <a href="/main" className="block px-4 py-3 hover:bg-gray-100 text-[#7050EF] text-lg">
+          <FaBrain className="inline mr-2" /> AI Form
+        </a>
+        <a href="#" className="block px-4 py-3 hover:bg-gray-100 text-[#7050EF] text-lg">
+          <IoDocumentsSharp className="inline mr-2" /> My Forms
+        </a>
+        <a href="#" className="block px-4 py-3 hover:bg-gray-100 text-[#7050EF] text-lg">
+          <MdDashboardCustomize className="inline mr-2" /> Customize
+        </a>
+        <a href="#" className="block px-4 py-3 hover:bg-gray-100 text-[#7050EF] text-lg">
+          <CgTemplate className="inline mr-2" /> Templates
+        </a>
       </div>
 
+      {/* Sidebar Profile */}
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
     </>
   );

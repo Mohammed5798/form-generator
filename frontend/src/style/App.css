@@ -28,7 +28,7 @@ nav .burger span{
 nav .burger span:not(:last-child){
     margin-bottom: 9px;
 }
-.mobile-menu {
+/* .mobile-menu {
     width: 250px;
     position: absolute;
     top: 72px;
@@ -42,7 +42,9 @@ nav .burger span:not(:last-child){
     border-radius: 5px;
     margin-bottom: 10px;
     font-size: 24px;
-}
+} */
+
+
 
 @media (max-width: 400px) {
     .logo{
