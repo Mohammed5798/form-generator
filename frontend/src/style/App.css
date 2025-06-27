@@ -189,3 +189,14 @@ nav .burger span:not(:last-child){
         margin: 0;
     }
 }
+/* Form Style Page */
+@media (max-width: 915px) {
+    .form-style-container {
+        flex-direction: column-reverse;
+        gap: 30px
+    }
+    .style-child {
+        width: 100%;
+        border: none
+    }
+}
