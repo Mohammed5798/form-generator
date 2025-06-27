@@ -13,11 +13,11 @@ const FormStylePage = () => {
   return (
     <div className="min-h-screen flex flex-col">
         <Header/>
-      <div className="form-style-container flex flex-1 space-x-20 mt-4 p-8 px-12">
+      <div className="flex flex-1 space-x-20 mt-4 p-8 px-12">
         {/* Left Side: Form Preview */}
-        <div className="style-child flex-1 space-y-4">
-            <div className="bg-[#E3DAFF] rounded-lg p-4 flex justify-center items-center py-16">
-                <img src="/image.png" alt="user" className="w-8" />
+        <div className="flex-1 space-y-4">
+            <div className="bg-[#E3DAFF] rounded-lgflex justify-center items-center rounded-lg">
+                <img src="/Frame.png" alt="user" className="w-full" />
             </div>
 
             <h2 className="text-2xl font-bold">Preview a Form</h2>
@@ -37,16 +37,16 @@ const FormStylePage = () => {
                     Choose File
                     <input type="file" className="hidden" onChange={() => { /* handle file change  */ }} />
                     </label>
-                    <span className="file-choosed text-gray-600">No file chosen</span>
+                    <span className="text-gray-600">No file chosen</span>
                 </div>
                 </div>
-                <button className="cursor-pointer w-full rounded py-2 text-white mt-4" style={{ backgroundColor: btnColor }}> Submit</button>
+                <button className="w-full rounded py-2 text-white mt-4" style={{ backgroundColor: btnColor }}> Submit</button>
             </div>
         </div>
 
 
         {/* Right Side: Form Styling Panel */}
-        <div className="style-child  w-96 rounded-lg border border-gray-300 p-4 space-y-4">
+        <div className="w-96 rounded-lg border border-gray-300 p-4 space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-bold">Style Your Form</h3>
             <span className="cursor-pointer text-gray-500">✕</span>
@@ -168,7 +168,7 @@ const FormStylePage = () => {
 
             <div className="bg-[#E3DAFF] rounded-lg p-3 mt-20 flex justify-center">
                 <button
-                className="cursor-pointer w-full font-semibold text-[#6040DF]"
+                className="font-semibold text-[#6040DF]"
                 onClick={() => {
                     alert(`تم حفظ التنسيقات!\n
                         Background: ${bgColor}\n
