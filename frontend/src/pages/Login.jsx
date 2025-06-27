@@ -41,7 +41,7 @@ const Login = () => {
 
       {/* القسم اليمين */}
       <div className="right-section w-2/3 flex flex-col justify-center items-center p-12">
-        <img src="/logo-white.png" alt="user" className="mobile-logo hidden w-48 mb-4"/>
+        <img src="/logo3.png" alt="user" className="mobile-logo hidden w-48 mb-4"/>
         <h3 className="text-2xl text-[#7050EF] mb-4 font-semibold">Login to your account</h3>
 
         <form onSubmit={handleSubmit} className="w-80 mt-4 space-y-5">
