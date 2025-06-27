@@ -3,16 +3,34 @@ import { CgTemplate } from "react-icons/cg";
 import { FaBrain, FaRegUser } from "react-icons/fa6";
 import { MdDashboardCustomize } from "react-icons/md";
 import { IoDocumentsSharp } from "react-icons/io5";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Sidebar from "./Sidebar";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null); // مرجع لقائمة الموبايل
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
   const closeSidebar = () => setIsSidebarOpen(false);
   const toggleMobileMenu = () => setIsMenuOpen((prev) => !prev);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -20,7 +38,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center space-x-3 ml-2 sm:ml-6">
           <img src="/logo1.png" alt="logo" className="w-8" />
-          <span className="text-2xl sm:text-3xl text-[#7050EF]" style={{ fontFamily: "'Pacifico', cursive" }} >
+          <span className="text-2xl sm:text-3xl text-[#7050EF]" style={{ fontFamily: "'Pacifico', cursive" }}>
             Formigo
           </span>
         </div>
@@ -33,6 +51,7 @@ const Header = () => {
           <a href="#" className="hover:underline underline-offset-6">Templates</a>
         </div>
 
+        {/* Desktop Profile Icon */}
         <div className="hidden md:flex bg-gray-200 rounded-full w-10 h-10 cursor-pointer mr-6 items-center justify-center"
           onClick={toggleSidebar}
         >
@@ -54,9 +73,9 @@ const Header = () => {
         </div>
       </nav>
 
-
       {/* Mobile Menu */}
       <div
+        ref={menuRef}
         className={`fixed top-[64px] right-0 w-40 bg-gray-50 shadow-md rounded-lg z-40 transition-transform duration-300 md:hidden ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
