@@ -14,6 +14,7 @@ import FormStylePage from './pages/FormStylePage';
 import PreviewPage from './pages/PreviewPage';
 import FormPage from './user-pages/FormPage';
 import QRSuccessPage from './user-pages/QRSuccessPage';
+import QRErrorPage from './user-pages/qrErrorPage';
 
 function App() {
   
@@ -36,6 +37,7 @@ function App() {
 
       <Route path='/formPage' element={<FormPage/>}/>
       <Route path='/qrSuccess' element={<QRSuccessPage/>} />
+      <Route path='/qrError' element={<QRErrorPage/>} />
     </Routes>
    </div>
   )
