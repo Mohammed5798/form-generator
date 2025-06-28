@@ -21,9 +21,9 @@ const QRCodePage = () => {
       {/* Navbar */}
         <div className=""><Header/></div>
 
-        <div className='flex flex-col items-center justify-start space-y-10'>
+        <div className='flex flex-col items-center justify-start py-4'>
 
-            <h1 className="text-2xl font-semibold mt-12">Your Form is Ready!</h1>
+            <h1 className="text-2xl font-semibold mt-7 mb-4">Your Form is Ready!</h1>
 
             <div className="boxes-container flex space-x-16">
                 {/* QR Section */}
@@ -58,7 +58,7 @@ const QRCodePage = () => {
 
             {/* Footer Buttons */}
             <div className="w-full flex justify-between items-center mt-12 p-4 px-14 border-t border-gray-300">
-                <Link to="/formBuilder">
+                <Link to="/preview">
                     <button className="px-4 py-1 border border-gray-300 rounded-lg flex flex-row justify-center items-center focus:outline-none focus:border-[#6040DF]">
                         <IoIosArrowBack /> Back
                     </button>

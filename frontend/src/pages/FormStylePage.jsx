@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
 const FormStylePage = () => {
   const [activeTab, setActiveTab] = useState("Colors");
@@ -184,6 +186,23 @@ const FormStylePage = () => {
             </div>
         </div>
       </div>
+
+               {/* Footer Buttons */}
+            <div className="w-full flex justify-between items-center mt-12 p-4 px-14 border-t border-gray-300">
+                <Link to="/preview">
+                    <button className="px-4 py-1 border border-gray-300 rounded-lg flex flex-row justify-center items-center focus:outline-none focus:border-[#6040DF]">
+                        <IoIosArrowBack /> Back
+                    </button>
+                </Link>
+
+                <Link to="/formResponses">
+                    <button className="max-[725px]:p-[8px] px-7 py-2 bg-[#7050EF] text-white rounded-lg">View Responses</button>
+                </Link>
+                
+            </div>
+
+
+
     </div>
   );
 };

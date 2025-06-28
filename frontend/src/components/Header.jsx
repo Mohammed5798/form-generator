@@ -45,9 +45,9 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 text-[#7050EF] text-md sm:text-lg font-semibold">
-          <a href="/main" className="hover:underline underline-offset-6">AI Form</a>
-          <a href="#" className="hover:underline underline-offset-6">My Forms</a>
-          <a href="#" className="hover:underline underline-offset-6">Customize</a>
+          <a href="/formAI" className="hover:underline underline-offset-6">AI Form</a>
+          <a href="/main" className="hover:underline underline-offset-6">My Forms</a>
+          <a href="/formStyle" className="hover:underline underline-offset-6">Customize</a>
           <a href="#" className="hover:underline underline-offset-6">Templates</a>
         </div>
 

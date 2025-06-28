@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { Link } from "react-router-dom";
 
 const FormAiPage = () => {
 const [selectedImage, setSelectedImage] = useState(null);
@@ -476,9 +477,11 @@ return (
                             >
                                 Add A Question +
                             </button>
+                            <Link to={"/qrPage"}>
                             <button className="max-w-full bg-[#AF9DFA] text-white rounded-xl w-80 p-3">
                                 Generate Form
                             </button>
+                            </Link>
                         </div>
 
                     </div>
